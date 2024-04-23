@@ -72,7 +72,31 @@ const LoginPage: React.FC = () => {
                     />
                 </div>
                 <div className="mt-6">
-                    
+                    {/*add a remember me check box*/}
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <input
+                                id="remember_me"
+                                name="remember_me"
+                                type="checkbox"
+                                className="h-4 w-4 text-Lpurple focus:ring-Lpurple border-gray-300 rounded"
+                            />
+                            <label
+                                htmlFor="remember_me"
+                                className="ml-2 block text-sm text-white"
+                            >
+                                Remember me
+                            </label>
+                        </div>
+                        <div className="text-sm">
+                            <a
+                                href="#"
+                                className="font-medium text-Lpurple hover:text-LpurpleDark"
+                            >
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
                     <button
                         type="submit"
                         onClick={handleSignInWithEmail}
