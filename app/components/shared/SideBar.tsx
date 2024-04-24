@@ -31,15 +31,13 @@ const SideBar: React.FC = () => {
             <Image 
             src={dashboard} 
             alt="Graduation Cap" 
-            layout="responsive"
-            width={24}
-            height={24}
+            
             sizes="100vh"
 
-            className="p-4" 
+            className="p-4 w-[50px] h-[50px]" 
           />
             </div>
-            <a className='text-white text-[12px]' href="/face-recognition">Dashboard</a>
+            <a className='text-white text-[14px]' href="/face-recognition">Dashboard</a>
             
             
           </li>
@@ -48,14 +46,13 @@ const SideBar: React.FC = () => {
             <Image 
             src={cash} 
             alt="Graduation Cap" 
-            layout="responsive"
             sizes="100vh"
-            className="p-4" 
+            className="p-4 w-[50px] h-[50px]" 
             
 
           />
             </div>
-            <a className='text-white text-[12px]' href="/face-recognition">Face Recognition</a>
+            <a className='text-white text-[14px]' href="/face-recognition">Face Recognition</a>
             
             
           </li>
@@ -64,13 +61,12 @@ const SideBar: React.FC = () => {
             <Image 
             src={notebook} 
             alt="Graduation Cap" 
-            layout="responsive"
-            className="p-4" 
+            className="p-4 w-[50px] h-[50px]" 
             sizes="100vh"
 
           />
             </div>
-            <a className='text-white text-[12px]' href="/face-recognition">Attendance</a>
+            <a className='text-white text-[14px]' href="/face-recognition">Attendance</a>
             
             
           </li>
@@ -79,15 +75,16 @@ const SideBar: React.FC = () => {
             <Image 
             src={contacts} 
             alt="Graduation Cap" 
-            layout="responsive"
-            className="p-4" 
+            
+            className="p-4 w-[50px] h-[50px]" 
+ 
             width={0}
             height={0}
             sizes="100vh"
 
           />
             </div>
-            <a className='text-white text-[12px]' href="/face-recognition">Manage Students</a>
+            <a className='text-white text-[14px]' href="/face-recognition">Manage Students</a>
             
             
           </li>
