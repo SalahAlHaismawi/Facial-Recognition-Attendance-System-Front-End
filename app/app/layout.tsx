@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Poppins } from 'next/font/google';
-import Sidebar from "../components/shared/SideBar";
+import Sidebar from "@/app/components/shared/SideBar";
+import { AuthProvider } from "@/context/AuthContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,8 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <AuthProvider>
+      <html lang="en">
       <body className={poppinsFont.className}>{children}</body>
     </html>
+    </AuthProvider>
+    
   );
 }

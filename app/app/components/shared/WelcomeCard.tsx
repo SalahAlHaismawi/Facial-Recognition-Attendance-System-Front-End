@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Student from "../../public/Student.png";
+import Student from "../../../public/Student.png";
 const WelcomeCard: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-[#925FE2] to-[#b01dddcc] rounded-lg p-6 flex items-center justify-between w-[90%] mx-auto h-[200px]  ">

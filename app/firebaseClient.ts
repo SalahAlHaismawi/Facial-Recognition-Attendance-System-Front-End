@@ -9,7 +9,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyAl-9O-EaDS11r8lGwJDRekoCYLYxiptoY",
   authDomain: "face-recognition-attenda-9c856.firebaseapp.com",
   databaseURL: "https://face-recognition-attenda-9c856-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = !firebase.apps.length ? initializeApp(firebaseConfig) : firebase.app();
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export { auth };
+export { auth, app };

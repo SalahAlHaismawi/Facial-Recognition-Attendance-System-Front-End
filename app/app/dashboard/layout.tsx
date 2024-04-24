@@ -1,11 +1,16 @@
-import WelcomeCard from '@/components/shared/WelcomeCard';
-import AttendanceBox from '@/components/shared/AttendanceBox';
+'use client'
+import WelcomeCard from '@/app/components/shared/WelcomeCard';
+import AttendanceBox from '@/app/components/shared/AttendanceBox';
 
-import SideBar from '../../components/shared/SideBar'
-
+import SideBar from '@/app/components/shared/SideBar'
+import {AuthProvider} from '../../context/AuthContext'
+import useProtectedRoute from '@/context/useProtectedRoute';
 const Layout = ({ children }: { children: React.ReactNode }) => {
+
+  useProtectedRoute(); 
     return (
-      <div className="flex h-screen w-screen justify-center pt-10 bg-[#F5F5F5]">
+      <AuthProvider>
+        <div className="flex h-screen w-screen justify-center pt-10 bg-[#F5F5F5]">
       <SideBar />
       <div className="flex flex-col flex-grow">
         <WelcomeCard />
@@ -17,6 +22,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <main className="overflow-auto">{children}</main>
       </div>
     </div>
+      </AuthProvider>
+      
     );
   };
 

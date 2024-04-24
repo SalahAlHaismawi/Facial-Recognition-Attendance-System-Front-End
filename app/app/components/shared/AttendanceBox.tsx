@@ -1,9 +1,9 @@
 import React from 'react';
 import { FiHome, FiUser, FiSettings } from 'react-icons/fi';  // Import icons from React Icons
-import Book from '../../public/icons/Book.png';
-import Cap from '../../public/icons/Cap.png';
-import Stats from '../../public/icons/Stats.png';
-import OpenBook from '../../public/icons/OpenBook.png';
+import Book from '../../../public/icons/Book.png';
+import Cap from '../../../public/icons/Cap.png';
+import Stats from '../../../public/icons/Stats.png';
+import OpenBook from '../../../public/icons/OpenBook.png';
 import Image from "next/image";
 
 
@@ -20,7 +20,7 @@ const AttendanceBox: React.FC = () => {
         <div className="rounded-lg  flex items-center w-[90%] mx-auto h-[200px]  space-x-10  pt-20 ">
             
       {data.map(item => (
-        <div key={item.id} className="flex flex-col items-center justify-center border-4 border-[#925FE2] bg-white rounded-lg flex-grow shadow-md">
+        <div key={item.id} className="flex flex-col items-center justify-center  bg-white rounded-lg flex-grow shadow-md hover:border-4 border-[#925FE2]">
           <div className='p-4'>{item.icon}</div>
           <div className='p-2'>{item.percentage}</div>
           <div className="text-sm p-2 text-Lpurple font-medium">{item.text}</div>
