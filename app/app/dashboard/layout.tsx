@@ -1,11 +1,15 @@
-import SideBar from '../components/SideBar'
+import WelcomeCard from '@/components/shared/WelcomeCard';
+import SideBar from '../../components/shared/SideBar'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
-      <div className="flex flex-row bg-blue">
-        <SideBar />
-        <main className="flex-1">{children}</main>
+      <div className="flex h-screen w-screen justify-center pt-10">
+      <SideBar />
+      <div className="flex flex-col flex-grow">
+        <WelcomeCard />
+        <main className="overflow-auto">{children}</main>
       </div>
+    </div>
     );
   };
 
