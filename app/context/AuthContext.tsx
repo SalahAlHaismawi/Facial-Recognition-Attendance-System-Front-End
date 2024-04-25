@@ -1,56 +1,56 @@
+// src/context/AuthContext.js
 'use client'
-import React, { createContext, useState, useEffect, useMemo } from 'react';
-import { getAuth, onAuthStateChanged, User, signOut } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from '@/firebaseClient';
-import { useRouter } from 'next/navigation';
-import { log } from 'console';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { User, onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from 'next/navigation'
+import { auth } from '../firebaseConfig'; // Import the auth object directly
 
-export const AuthContext = createContext({
-    user: null as User | null,
+type AuthContextType = {
+    user: User | null;
+    isLoggedIn: boolean;
+    logout: () => Promise<void>;
+    isLoading: boolean;
+  };
+  
+  export const AuthContext = createContext<AuthContextType>({
+    user: null,
     isLoggedIn: false,
-    Logout: () => Promise<void>, // Initialize with a no-op function
-});
-
-const app = initializeApp(firebaseConfig);
-
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    logout: async () => {},
+    isLoading: true,
+  });
+  export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [isLoading, setLoading] = useState(true); // Manage loading state
     const router = useRouter();
-
+  
     useEffect(() => {
-        const auth = getAuth(app); // Ensure you're passing the initialized app instance to getAuth
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-        });
-
-        return unsubscribe; // Clean-up for the listener
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        setLoading(false); // Set loading to false once the user is fetched
+      });
+      return () => unsubscribe(); // Cleanup on unmount
     }, []);
-
+  
     const logout = async () => {
-        const auth = getAuth(app);
-        try {
-            await signOut(auth);
-            setUser(null); // Update state post-logout
-            console.log('logged out')
-            router.push('/login'); // Redirect to login page after logout
-        } catch (error) {
-            console.error("Logout error:", error);
-            // Handle errors (e.g., show a notification)
-            console.log('error boss:', error)
-
-        }
+      try {
+        await signOut(auth);
+        setUser(null); // Clear user on logout
+        router.push('/login'); // Redirect to login after logout
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
     };
-
-    const authValue = useMemo(() => ({
-        user,
-        isLoggedIn: !!user,
-        logout,
-    }), [user]);
-
+  
+    const value = {
+      user,
+      isLoggedIn: !!user,
+      logout,
+      isLoading,
+    };
+  
     return (
-        <AuthContext.Provider value={authValue}>
-            {children}
-        </AuthContext.Provider>
+      <AuthContext.Provider value={value}>
+        {children}
+      </AuthContext.Provider>
     );
-}
+  };

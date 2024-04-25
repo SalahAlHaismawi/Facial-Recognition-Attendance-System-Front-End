@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import {app, auth} from '../firebaseClient'
+import {app, auth} from '../firebaseConfig'
 import { AuthProvider } from '../context/AuthContext';
 
 function MyApp({ Component, pageProps }: AppProps) {

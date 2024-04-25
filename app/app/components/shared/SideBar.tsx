@@ -40,7 +40,7 @@ const SideBar: React.FC = () => {
             className="p-4 w-[50px] h-[50px]" 
           />
             </div>
-            <a className='text-white text-[14px]' href="/face-recognition">Dashboard</a>
+            <a className='text-white text-[14px]' href="/dashboard">Dashboard</a>
             
             
           </li>
@@ -69,7 +69,7 @@ const SideBar: React.FC = () => {
 
           />
             </div>
-            <a className='text-white text-[14px]' href="/face-recognition">Attendance</a>
+            <a className='text-white text-[14px]' href="/attendance">Attendance</a>
             
             
           </li>
@@ -87,7 +87,7 @@ const SideBar: React.FC = () => {
 
           />
             </div>
-            <a className='text-white text-[14px]' href="/face-recognition">Manage Students</a>
+            <a className='text-white text-[14px]' href="/manage-students">Manage Students</a>
             
             
           </li>

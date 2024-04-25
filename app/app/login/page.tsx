@@ -6,7 +6,7 @@ import { Poppins } from "next/font/google";
 import drawing from "../../public/drawing.png";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { auth } from "../../firebaseClient";
+import { auth } from "../../firebaseConfig";
 
 import { browserLocalPersistence, browserSessionPersistence, getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
 
