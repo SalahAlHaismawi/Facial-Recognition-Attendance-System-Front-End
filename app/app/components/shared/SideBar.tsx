@@ -62,6 +62,21 @@ const SideBar: React.FC = () => {
           <li className='flex items-center'>
           <div>
             <Image 
+            src={cash} 
+            alt="Graduation Cap" 
+            sizes="100vh"
+            className="p-4 w-[50px] h-[50px]" 
+            
+
+          />
+            </div>
+            <a className='text-white text-[14px]' href="/face-capture">Face Collection</a>
+            
+            
+          </li>
+          <li className='flex items-center'>
+          <div>
+            <Image 
             src={notebook} 
             alt="Graduation Cap" 
             className="p-4 w-[50px] h-[50px]" 

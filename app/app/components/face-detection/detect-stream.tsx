@@ -1,18 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 
-const VideoStream = () => {
+const DetectStream= () => {
     const videoRef = useRef(null);  // Reference to the video element
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8765');
+        const ws = new WebSocket('ws://localhost:8766');
 
         ws.binaryType = 'blob';  // Important: Set binary type to 'blob'
+
+        ws.onopen = () => {
+            console.log('WebSocket Connection Established');
+        };
 
         ws.onmessage = (event) => {
             if (videoRef.current) {
                 const url = URL.createObjectURL(event.data);
-                (videoRef.current as HTMLImageElement).src = url;
+                videoRef.current.src = url;
             }
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket Error: ', error);
         };
 
         ws.onclose = () => {
@@ -32,4 +40,4 @@ const VideoStream = () => {
     );
 };
 
-export default VideoStream;
+export default DetectStream;
