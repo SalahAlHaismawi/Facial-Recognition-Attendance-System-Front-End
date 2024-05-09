@@ -4,7 +4,7 @@ const DetectStream= () => {
     const videoRef = useRef(null);  // Reference to the video element
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8766');
+        const ws = new WebSocket('ws://localhost:8000/ws/detect');
 
         ws.binaryType = 'blob';  // Important: Set binary type to 'blob'
 

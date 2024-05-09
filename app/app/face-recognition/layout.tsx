@@ -14,9 +14,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     
         <div className="flex h-screen w-screen justify-center pt-10 bg-[#F5F5F5]">
       <SideBar />
-      <div className="flex flex-col flex-grow">
-        
-        <VideoStream/>
+      <div className="flex flex-col flex-grow justify-between w-full">
+      <WelcomeCard />
+      <div className='ml-5'>
+      <VideoStream/>
+      </div>
         <main className="overflow-auto">{children}</main>
       </div>
     </div>

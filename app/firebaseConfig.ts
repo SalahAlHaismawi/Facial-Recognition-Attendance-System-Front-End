@@ -1,6 +1,7 @@
-// Import the necessary Firebase modules
-import { initializeApp } from "firebase/app";
-import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore'; 
+import { getStorage } from 'firebase/storage'; 
 
 // Firebase configuration
 export const firebaseConfig = {
@@ -17,6 +18,8 @@ export const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app); // For Firestore
+const storage = getStorage(app); // For Storage
 
 // Set persistence for Auth
 setPersistence(auth, browserLocalPersistence)
@@ -28,4 +31,4 @@ setPersistence(auth, browserLocalPersistence)
     console.error("Error setting persistence:", error);
   });
 
-export { auth, app };
+export { auth, app, db, storage };
