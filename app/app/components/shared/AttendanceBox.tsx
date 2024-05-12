@@ -17,13 +17,13 @@ const AttendanceBox: React.FC = () => {
       ];
     
     return (
-        <div className="rounded-lg  flex items-center w-[90%] mx-auto h-[200px]  space-x-10  pt-20 ">
+        <div className="rounded-lg  flex items-center w-[90%] mx-auto h-[200px]  space-x-10  pt-20 text-white">
             
       {data.map(item => (
-        <div key={item.id} className="flex flex-col items-center justify-center  bg-white rounded-lg flex-grow shadow-md hover:border-4 border-[#925FE2]">
+        <div key={item.id} className="flex flex-col items-center justify-center  bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] rounded-lg flex-grow shadow-md hover:border-4 border-[#925FE2] text-white">
           <div className='p-4'>{item.icon}</div>
           <div className='p-2'>{item.percentage}</div>
-          <div className="text-sm p-2 text-Lpurple font-medium">{item.text}</div>
+          <div className="text-sm p-2  font-medium">{item.text}</div>
         </div>
       ))}
     </div>

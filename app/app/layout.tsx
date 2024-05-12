@@ -4,6 +4,7 @@ import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Sidebar from "@/app/components/shared/SideBar";
 import { AuthProvider } from "@/context/AuthContext";
+import LoadingSkeleton from "@/app/components/shared/LoadingSkeleton";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
+
       <body className={poppinsFont.className}>{children}</body>
     </html>
     </AuthProvider>

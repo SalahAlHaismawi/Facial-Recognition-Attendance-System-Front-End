@@ -8,7 +8,15 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { auth } from "../../firebaseConfig";
 
-import { browserLocalPersistence, browserSessionPersistence, getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  getAuth, OAuthProvider,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signInWithPopup
+} from "firebase/auth";
 
 import { useRouter } from "next/navigation";
 
@@ -21,7 +29,7 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                    router.push('/dashboard');
+                    router.push('/student-dashboard');
             }
     });
 
@@ -31,8 +39,8 @@ const LoginPage: React.FC = () => {
 }, []);
   const handleRememberMeChange = (event:any) => {
     setRememberMe(event.target.checked);
-  }; 
-  
+  };
+
   const handleSignInWithEmail = async (event) => {
     event.preventDefault();
     const auth = getAuth();
@@ -45,16 +53,30 @@ const LoginPage: React.FC = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        router.push('/dashboard'); // Use Next.js router to navigate
+        router.push('/student-dashboard'); // Use Next.js router to navigate
       })
       .catch((error) => {
         alert(`Failed to log in: ${error.message}`);
       });
 };
 
+  const signInWithMicrosoft = async () => {
+    const provider = new OAuthProvider('microsoft.com');
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User signed in: ", user);
+      // You can now handle the signed-in user in your app
+    } catch (error) {
+      console.error("Authentication failed: ", error);
+      alert("Login failed: " + error.message);
+    }
+  };
+
   return (
     <div className="w-screen h-screen flex">
-      <div className="flex flex-row w-1/2 h-screen items-center justify-center bg-Lblack ">
+      <div className="flex flex-row w-1/2 h-screen items-center justify-center bg-[#161A30] ">
         <div className="w-[50%] ">
           <h1 className="text-[48px] text-white">Login</h1>
           <form className="mt-8">
@@ -112,7 +134,7 @@ const LoginPage: React.FC = () => {
               </div>
               <button
                 type="submit"
-                onClick={handleSignInWithEmail}
+                onClick={signInWithMicrosoft}
                 className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-Lblue hover:bg-LblueDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-Lpurple bg-Lpurple"
               >
                 Sign in
@@ -121,9 +143,8 @@ const LoginPage: React.FC = () => {
           </form>
         </div>
       </div>
-      <div className="w-1/2 h-screen flex flex-col items-center justify-center bg-Lpurple relative">
+      <div className="w-1/2 h-screen flex flex-col items-center justify-center  bg-gradient-to-b from-[#925FE2] to-[#b01dddcc] relative">
         <h1 className="text-[80px] pb-[600px] text-white ">
-          Welcome to student portal
         </h1>
 
         <Image
@@ -135,5 +156,4 @@ const LoginPage: React.FC = () => {
     </div>
   );
 };
-
 export default LoginPage;

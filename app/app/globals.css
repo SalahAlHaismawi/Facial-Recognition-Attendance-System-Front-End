@@ -7,3 +7,10 @@
 html {
     font-family: var(--font-poppins);
   }
+body {
+    background-image: url('../public/background.png');
+    background-size: cover;  /* Cover the entire page */
+    background-position: center;  /* Center the background image */
+    background-repeat: no-repeat;  /* Do not repeat the image */
+    background-attachment: fixed;  /* Optional: Fixed, so the image does not scroll with the page */
+}

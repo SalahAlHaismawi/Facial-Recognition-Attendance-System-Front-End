@@ -1,12 +1,19 @@
 'use client'
-import React from 'react';
-import Layout from '../layout'; // Fixed import statement
-import WelcomeCard from '@/app/components/shared/WelcomeCard'; // Fixed import statement
-const Page = () => {
+import React, { Suspense } from "react";
+import WelcomeCard from '@/app/components/shared/WelcomeCard';
+import SideBar from '@/app/components/shared/SideBar';
+import { AuthProvider } from '../../context/AuthContext';
+import useProtectedRoute from '@/context/useProtectedRoute';
+import Loading from "@/app/face-recognition/loading";
+const VideoStream = React.lazy(() => import('../components/faceRecognition/VideoStream'));
+
+const Page = ({ children }) => {
+    useProtectedRoute();
+
     return (
-        <div >
-   
-        </div>
+       <div>
+
+       </div>
     );
 };
 

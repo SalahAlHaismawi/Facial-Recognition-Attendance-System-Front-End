@@ -17,7 +17,7 @@ const SideBar: React.FC = () => {
   const router = useRouter(); // Use useRouter correctl
 
   return (
-    <div className="ml-5 min-h-[90vh] max-h-[90vh]  flex flex-col text-base text-center text-black rounded-3xl max-w-[233px] bg-gradient-to-b from-[#925FE2] to-[#b01dddcc]  w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:max-w-[233px]">
+    <div className="ml-5 min-h-[90vh] max-h-[90vh]  flex flex-col text-base text-center text-black rounded-3xl max-w-[233px] bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]  w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:max-w-[233px]">
       <div className='inline-block mx-auto rounded-xl relative mt-10 bg-gradient-to-r from-[#9C6FE4] to-[#7042C0]'>
         <Image 
           src={GraduationCap} 
@@ -40,7 +40,7 @@ const SideBar: React.FC = () => {
             className="p-4 w-[50px] h-[50px]" 
           />
             </div>
-            <a className='text-white text-[14px]' href="/dashboard">Dashboard</a>
+            <a className='text-white text-[14px]' href="/admin-dashboard">Dashboard</a>
             
             
           </li>

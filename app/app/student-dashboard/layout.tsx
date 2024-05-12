@@ -5,17 +5,30 @@ import AttendanceBox from '@/app/components/shared/AttendanceBox';
 import SideBar from '@/app/components/shared/SideBar'
 import {AuthProvider} from '../../context/AuthContext'
 import useProtectedRoute from '@/context/useProtectedRoute';
+import axios from "axios";
+
+const handleButtonClick = () => {
+  console.log('Button clicked');
+
+  axios.post('http://localhost:8000/generate-encodings')
+      .then(response => {
+        console.log('Success:', response.data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error.response ? error.response.data.error : error.message);
+      });
+};
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useProtectedRoute(); 
     return (
       <AuthProvider>
-        <div className="flex h-screen w-screen justify-center pt-10 bg-[#F5F5F5]">
+        <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> </button>
+        <div className="flex h-screen w-screen justify-center pt-10 ">
       <SideBar />
       <div className="flex flex-col flex-grow">
         <WelcomeCard />
         <div className='mt-10 flex flex-col '>
-          <h1 className=' pl-12 text-xl xl:pl-[50px] 2xl:pl-[120px] 3xl:pl-[140px]'>Current Attendance</h1>
         <AttendanceBox />
         </div>
         
