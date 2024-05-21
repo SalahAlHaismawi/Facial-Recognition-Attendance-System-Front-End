@@ -60,19 +60,7 @@ const LoginPage: React.FC = () => {
       });
 };
 
-  const signInWithMicrosoft = async () => {
-    const provider = new OAuthProvider('microsoft.com');
 
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log("User signed in: ", user);
-      // You can now handle the signed-in user in your app
-    } catch (error) {
-      console.error("Authentication failed: ", error);
-      alert("Login failed: " + error.message);
-    }
-  };
 
   return (
     <div className="w-screen h-screen flex">
@@ -132,13 +120,7 @@ const LoginPage: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <button
-                type="submit"
-                onClick={signInWithMicrosoft}
-                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-Lblue hover:bg-LblueDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-Lpurple bg-Lpurple"
-              >
-                Sign in
-              </button>
+
             </div>
           </form>
         </div>

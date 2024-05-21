@@ -1,43 +1,52 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import axios from "axios";
 
 const DetectStream= () => {
-    const videoRef = useRef(null);  // Reference to the video element
+    const [isActive, setIsActive] = useState(true); // Track if the video stream is active
+    const streamSocket = useRef(null);
+    const encodeSocket = useRef(null);
 
-    useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8000/ws/detect');
 
-        ws.binaryType = 'blob';  // Important: Set binary type to 'blob'
 
-        ws.onopen = () => {
-            console.log('WebSocket Connection Established');
+    const handleStartEncoding = async () => {
+        // Close the stream socket if it's open
+        if (streamSocket.current && streamSocket.current.readyState === WebSocket.OPEN) {
+            streamSocket.current.close();
+        }
+
+        // Initialize encoding WebSocket
+        encodeSocket.current = new WebSocket('ws://localhost:8000/ws/encode');
+        encodeSocket.current.onmessage = (event) => {
+            console.log("Encoding Data:", event.data);
+        };
+        encodeSocket.current.onclose = () => console.log("Encoding WebSocket closed");
+
+        // Optionally send a start command
+        encodeSocket.current.onopen = () => {
+            encodeSocket.current.send("start encoding");
+            setIsActive(false); // Update state to indicate encoding is active
         };
 
-        ws.onmessage = (event) => {
-            if (videoRef.current) {
-                const url = URL.createObjectURL(event.data);
-                videoRef.current.src = url;
-            }
-        };
-
-        ws.onerror = (error) => {
-            console.error('WebSocket Error: ', error);
-        };
-
-        ws.onclose = () => {
-            console.log('WebSocket Connection Closed');
-        };
-
-        return () => {
-            ws.close();
-        };
-    }, []);
+        // Make API call to start encoding
+        try {
+            const response = await axios.post('http://localhost:8000/generate-encodings');
+            console.log('Encoding started:', response.data.message);
+        } catch (error) {
+            console.error('Error starting encoding:', error);
+        }
+    };
 
     return (
         <div>
-            <h2>Live Video Stream</h2>
-            <img ref={videoRef} alt="Video Stream" />
+            {isActive ? (
+                <button onClick={handleStartEncoding}>Start Encoding</button>
+            ) : (
+                <p>Encoding in progress...</p>
+            )}
         </div>
     );
 };
+
+
 
 export default DetectStream;

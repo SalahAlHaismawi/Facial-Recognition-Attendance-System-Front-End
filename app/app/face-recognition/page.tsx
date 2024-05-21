@@ -5,7 +5,7 @@ import SideBar from '@/app/components/shared/SideBar';
 import { AuthProvider } from '../../context/AuthContext';
 import useProtectedRoute from '@/context/useProtectedRoute';
 import Loading from "@/app/face-recognition/loading";
-const VideoStream = React.lazy(() => import('../components/faceRecognition/VideoStream'));
+const VideoStream = React.lazy(() => import('@/app/components/face-recognition/Livestream'));
 
 const Page = ({ children }) => {
     useProtectedRoute();
