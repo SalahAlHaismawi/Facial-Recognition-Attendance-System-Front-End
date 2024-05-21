@@ -3,13 +3,14 @@ import Image from "next/image";
 import Github from '../public/icons/GitHub.png'
 import Microsoft from '../public/icons/Microsoft.png'
 
-import {AuthProvider} from '../context/AuthContext';
+import { AuthProvider } from '../context/AuthContext';
 import Linkedin from '../public/icons/LinkedIn.png'
-import {OAuthProvider, signInWithPopup} from "firebase/auth";
-import {auth} from "@/firebaseConfig";
+import { OAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/firebaseConfig";
 import React from "react";
 import { motion } from "framer-motion";
-
+import Hero from "@/app/components/landing-page/hero";
+import LaningPageSection1 from "@/app/components/landing-page/LandingPageSection1";
 export default function Home() {
 
     const signInWithMicrosoft = async () => {
@@ -25,56 +26,17 @@ export default function Home() {
             alert("Login failed: " + error.message);
         }
     };
-    const heroText= 'Unlock the power of AI For Ultimate security and attendance tracking'.split()
-  return (
 
-      <main className="flex min-h-screen flex-col items-center  p-10 w-full gap- ">
-            <div className=' w-full flex flex-row justify-between  '>
+    const heroText = 'Unlock the power of AI For Ultimate security and attendance tracking'.split();
 
-
-
-                <div>
-                    <h1 className='text-white text-xl'>
-                        Envision
-                    </h1>
-                    <h1 className='text-white text-xl'>
-                        Studio
-                    </h1>
-
-                </div>
-
-                <button
-                    type="submit"
-                    onClick={signInWithMicrosoft}
-                    className="w-[120px] flex flex-row justify-between items-center p-2  border border-transparent rounded-xl  shadow-lg text-md font-medium text-white bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]"
-                >
-                   <p className='text-md'>Sign In</p>
-
-                    <Image src={Microsoft} alt={'login-microsoft'} />
-
-                </button>
-
-
-            </div>
-          <div className='w-[90%] text-white mx-auto flex items center  flex-col text-center gap-3 ali my-auto'>
-              {heroText.map((el, i) => (
-                  <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className='text-7xl'
-                      transition={{
-                          duration: 0.5,
-                          delay: i / 10,
-                      }}
-                      key={i}
-                  >
-                      {el}{" "}
-                  </motion.span>
-              ))}
-          </div>
-
-      </main>
-
-
-  );
+    return (
+        <main className="flex min-h-screen flex-col items-center p-10 w-full     ">
+            <section className="snap-always snap-center min-h-screen w-full flex items-center justify-center">
+                <Hero />
+            </section>
+            {/*<section className="snap- shrink-0 min-h-screen w-full flex items-center justify-center bg-white">*/}
+            {/*    <LaningPageSection1/>*/}
+            {/*</section>*/}
+        </main>
+    );
 }
