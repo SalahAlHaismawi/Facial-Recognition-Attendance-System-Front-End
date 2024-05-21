@@ -70,7 +70,7 @@ const SideBar: React.FC = () => {
 
           />
             </div>
-            <a className='text-white text-[14px]' href="/face-capture">Face Collection</a>
+            <a className='text-white text-[14px]' href="/face-capture">Face Detection</a>
             
             
           </li>

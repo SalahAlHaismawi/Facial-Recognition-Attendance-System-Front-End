@@ -10,7 +10,11 @@ import { auth } from "@/firebaseConfig";
 import React from "react";
 import { motion } from "framer-motion";
 import Hero from "@/app/components/landing-page/hero";
-import LaningPageSection1 from "@/app/components/landing-page/LandingPageSection1";
+import LandingPageSection1 from "@/app/components/landing-page/LandingPageSection1";
+import LandingPageSection2 from "@/app/components/landing-page/LandingPageSection2";
+import LandingPageSection3 from "@/app/components/landing-page/LandingPageSection3";
+
+
 export default function Home() {
 
     const signInWithMicrosoft = async () => {
@@ -27,16 +31,30 @@ export default function Home() {
         }
     };
 
+    const Divider = () => {
+        return (
+            <div className="w-full border-t border-black border-8 my-8"></div>
+        );
+    };
+
     const heroText = 'Unlock the power of AI For Ultimate security and attendance tracking'.split();
 
     return (
-        <main className="flex min-h-screen flex-col items-center p-10 w-full     ">
-            <section className="snap-always snap-center min-h-screen w-full flex items-center justify-center">
-                <Hero />
+        <main className="flex min-h-screen flex-col items-center  w-full">
+            <section className="  min-h-screen w-full flex items-center justify-center p-10">
+                <Hero/>
             </section>
-            {/*<section className="snap- shrink-0 min-h-screen w-full flex items-center justify-center bg-white">*/}
-            {/*    <LaningPageSection1/>*/}
-            {/*</section>*/}
+            <Divider/>
+            <section className=" min-h-screen w-full flex items-center justify-center p-10 my-auto">
+                <LandingPageSection1/>
+            </section>
+            <section className=" min-h-screen w-full flex items-center justify-center p-10 my-auto">
+                <LandingPageSection2/>
+            </section>
+            <section className=" min-h-screen w-full flex items-center justify-center p-10 my-auto">
+                <LandingPageSection3/>
+            </section>
+
         </main>
     );
 }
