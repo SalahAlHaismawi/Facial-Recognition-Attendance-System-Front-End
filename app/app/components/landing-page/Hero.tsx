@@ -46,7 +46,7 @@ const MyComponent = () => {
                         <motion.span
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
-                            className='text-2xl 2xl:text-7xl font-bold'
+                            className='text-7xl font-bold'
                             transition={{
                                 duration: 0.7,
                                 delay: i / 10,
