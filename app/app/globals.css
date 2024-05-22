@@ -8,29 +8,27 @@
 
 html {
     font-family: var(--font-poppins);
+    height: 100%;
+
 }
 
 body {
     overflow-y: scroll;
-    overflow-x: auto;
+    overflow-x: hidden; /* Ensure horizontal overflow is hidden */
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
-
     background-image: url('../public/LandingBg.jpg');
     background-size: cover;  /* Cover the entire page */
     background-position: center;  /* Center the background image */
-    background-repeat: no-repeat;  /* Do not repeat the image */
-    background-attachment: fixed;  /* Optional: Fixed, so the image does not scroll with the page */
+    background-repeat: repeat-y;  /* Do not repeat the image */
+    scroll-padding-top: 1px; /* Ensure snapping happens close to the top */
 }
 
-body::-webkit-scrollbar {
-    width: 1em;
-}
 
-body::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
+.motion-div {
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
 
-body::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #763FF4, #AB5B3E);
 }

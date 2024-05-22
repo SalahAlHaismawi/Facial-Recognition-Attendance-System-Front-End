@@ -35,7 +35,7 @@ type AuthContextType = {
       try {
         await signOut(auth);
         setUser(null); // Clear user on logout
-        router.push('/login'); // Redirect to login after logout
+        router.push('/'); // Redirect to login after logout
       } catch (error) {
         console.error("Logout error:", error);
       }
