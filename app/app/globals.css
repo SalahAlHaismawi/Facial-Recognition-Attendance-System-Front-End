@@ -15,7 +15,6 @@ html {
 body {
     overflow-y: scroll;
     overflow-x: hidden; /* Ensure horizontal overflow is hidden */
-    scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
     background-image: url('../public/LandingBg.jpg');
     background-size: cover;  /* Cover the entire page */

@@ -33,7 +33,10 @@ const ParallaxSection = ({ children, offset = 100, bgColor, bgGradient, speed = 
     };
 
     return (
-        <motion.div style={style} className={`relative w-full flex items-center justify-center bg-cover ${snap ? 'snap-start' : ''}`}>
+        <motion.div
+            style={style}
+            className={`relative w-full flex items-center justify-center bg-cover ${snap ? 'snap-start' : ''}`}
+        >
             {children}
         </motion.div>
     );
@@ -64,6 +67,12 @@ const Home = () => {
                 box-sizing: border-box;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
               }
+              main {
+                scroll-snap-type: y mandatory;
+              }
+              section {
+                scroll-snap-align: start;
+              }
             `}</style>
             <ParallaxSection offset={0} snap={true}>
                 <Hero />
@@ -77,10 +86,10 @@ const Home = () => {
             <ParallaxSection offset={100} bgGradient="linear-gradient(to bottom, rgba(103, 7, 255, 1), rgba(116, 75, 236, 0.6))" speed={0.1} snap={true}>
                 <LandingPageSection3 />
             </ParallaxSection>
-            <ParallaxSection offset={0} speed={0.1} snap={false}>
+            <ParallaxSection offset={0} speed={0.1} snap={true}>
                 <Vision />
             </ParallaxSection>
-            <ParallaxSection offset={0} speed={0.6} snap={false}>
+            <ParallaxSection offset={0} speed={0.6} snap={true}>
                 <Contact />
             </ParallaxSection>
         </main>
