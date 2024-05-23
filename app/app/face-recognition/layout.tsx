@@ -8,25 +8,25 @@ import Loading from "@/app/face-recognition/loading";
 const VideoStream = React.lazy(() => import('@/app/components/face-recognition/Livestream'));
 
 const Layout = ({ children }) => {
-  useProtectedRoute();
+    useProtectedRoute();
 
-  return (
-      <AuthProvider>
-        <div className="flex h-screen w-screen justify-center pt-10">
-          <SideBar />
-          <div className="flex flex-col flex-grow justify-between justify-center">
-            <WelcomeCard />
+    return (
+        <AuthProvider>
+            <div className="flex h-screen w-screen">
 
-                <Suspense fallback={<Loading />}>
-                    <VideoStream />
+                    <SideBar />
 
-                </Suspense>
 
-            <main className="overflow-auto">{children}</main>
-          </div>
-        </div>
-      </AuthProvider>
-  );
+                <div className="flex flex-col flex-grow p-10">
+                    <WelcomeCard />
+                    <Suspense fallback={<Loading />}>
+                        <VideoStream />
+                    </Suspense>
+                    <main className="flex-grow overflow-auto mt-4">{children}</main>
+                </div>
+            </div>
+        </AuthProvider>
+    );
 };
 
 export default Layout;

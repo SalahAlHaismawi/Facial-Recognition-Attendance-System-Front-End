@@ -13,17 +13,9 @@ const Page: React.FC = () => { // Name the component directly
     useProtectedRoute();
 
     return (
-        <AuthProvider>
-            <div className='flex h-screen w-screen justify-center items-center'>
-                <SideBar />
-                <div className='p-5 w-full'>
-                    <WelcomeCard />
-                    <Suspense fallback={<Loading />}>
-                        <VideoStream />
-                    </Suspense>
-                </div>
-            </div>
-        </AuthProvider>
+      <div className=''>
+
+      </div>
     );
 };
 
