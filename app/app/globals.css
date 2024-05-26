@@ -16,10 +16,10 @@ body {
     overflow-y: scroll;
     overflow-x: hidden; /* Ensure horizontal overflow is hidden */
     -webkit-overflow-scrolling: touch;
-    background-image: url('../public/LandingBg.jpg');
+    background-image: url('../public/testImage5.jpg');
     background-size: cover;  /* Cover the entire page */
     background-position: center;  /* Center the background image */
-    background-repeat: repeat-y;  /* Do not repeat the image */
+    background-repeat: revert;  /* Do not repeat the image */
     scroll-padding-top: 1px; /* Ensure snapping happens close to the top */
 }
 

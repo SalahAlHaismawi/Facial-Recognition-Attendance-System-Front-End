@@ -4,9 +4,11 @@ import Microsoft from "@/public/icons/Microsoft.png";
 import {motion} from "framer-motion";
 import {OAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth} from "@/firebaseConfig";
+import {useRouter} from "next/navigation";
 
 const MyComponent = () => {
     const heroText= 'Unlock the power of AI For The Ultimate security and attendance tracking'.split(' ');
+    const router = useRouter();
 
     const signInWithMicrosoft = async () => {
         const provider = new OAuthProvider('microsoft.com');
@@ -15,6 +17,8 @@ const MyComponent = () => {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             console.log("User signed in: ", user);
+            // redirect to the dashboard
+            router.push('admin-dashboard');
             // You can now handle the signed-in user in your app
         } catch (error) {
             console.error("Authentication failed: ", error);

@@ -12,17 +12,15 @@ const Layout = ({ children }) => {
 
     return (
         <AuthProvider>
-            <div className="flex h-screen w-screen">
+            <div className="flex h-screen w-screen justify-center pt-10">
 
                     <SideBar />
 
 
-                <div className="flex flex-col flex-grow p-10">
-                    <WelcomeCard />
+                <div className="flex flex-col flex-grow">
                     <Suspense fallback={<Loading />}>
                         <VideoStream />
                     </Suspense>
-                    <main className="flex-grow overflow-auto mt-4">{children}</main>
                 </div>
             </div>
         </AuthProvider>
