@@ -16,10 +16,10 @@ body {
     overflow-y: scroll;
     overflow-x: hidden; /* Ensure horizontal overflow is hidden */
     -webkit-overflow-scrolling: touch;
-    background-image: url('../public/testImage5.jpg');
+    background-image: url('../public/bgImage6.jpg');
     background-size: cover;  /* Cover the entire page */
     background-position: center;  /* Center the background image */
-    background-repeat: revert;  /* Do not repeat the image */
+    background-repeat: no-repeat;  /* Do not repeat the image */
     scroll-padding-top: 1px; /* Ensure snapping happens close to the top */
 }
 
@@ -30,4 +30,24 @@ body {
     background-size: cover;
     background-position: center;
 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+
+.snap-section {
+    scroll-snap-align: start;
+width: 100%;
+    height: 100vh;
+background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

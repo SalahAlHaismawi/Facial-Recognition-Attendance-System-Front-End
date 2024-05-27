@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import Image from "next/image";
 import Github from '../public/icons/GitHub.png';
 import Microsoft from '../public/icons/Microsoft.png';
@@ -20,28 +19,6 @@ import Security from "@/public/Security.png";
 import Future from "@/public/Future.png";
 import Contact from "@/app/components/landing-page/Contact";
 
-const ParallaxSection = ({ children, offset = 100, bgColor, bgGradient, speed = 0.1, snap = true }) => {
-    const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], [0, -offset * speed]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
-
-    const style = {
-        backgroundImage: bgGradient,
-        backgroundColor: bgColor,
-        transform: `translateY(${y})`,
-        opacity
-    };
-
-    return (
-        <motion.div
-            style={style}
-            className={`relative w-full flex items-center justify-center bg-cover ${snap ? 'snap-start' : ''}`}
-        >
-            {children}
-        </motion.div>
-    );
-};
-
 const Home = () => {
     const signInWithMicrosoft = async () => {
         const provider = new OAuthProvider('microsoft.com');
@@ -56,42 +33,18 @@ const Home = () => {
     };
 
     return (
-        <main className="flex flex-col items-center w-full min-h-screen overflow-y-scroll snap-y snap-mandatory">
-            <style jsx global>{`
-              html {
-                scroll-behavior: smooth;
-              }
-              body {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-              }
-              main {
-                scroll-snap-type: y mandatory;
-              }
-              section {
-                scroll-snap-align: start;
-              }
-            `}</style>
-            <ParallaxSection offset={0} snap={true}>
+        <main className="flex flex-col items-center w-full min-h-screen snap-y snap-mandatory">
                 <Hero />
-            </ParallaxSection>
-            <ParallaxSection offset={100} bgGradient="linear-gradient(to bottom, rgba(103, 7, 255, 1), rgba(176, 29, 221, 0.6))" speed={0.1} snap={true}>
+
                 <LandingPageSection1 />
-            </ParallaxSection>
-            <ParallaxSection offset={100} bgGradient="linear-gradient(to bottom, rgba(100, 57, 232, 1), rgba(57, 79, 200, 0.6))" speed={0.1} snap={true}>
+
                 <LandingPageSection2 />
-            </ParallaxSection>
-            <ParallaxSection offset={100} bgGradient="linear-gradient(to bottom, rgba(103, 7, 255, 1), rgba(116, 75, 236, 0.6))" speed={0.1} snap={true}>
+
                 <LandingPageSection3 />
-            </ParallaxSection>
-            <ParallaxSection offset={0} speed={0.1} snap={true}>
+
                 <Vision />
-            </ParallaxSection>
-            <ParallaxSection offset={0} speed={0.6} snap={true}>
+
                 <Contact />
-            </ParallaxSection>
         </main>
     );
 };
