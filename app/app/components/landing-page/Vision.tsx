@@ -29,7 +29,7 @@ const MyComponent = () => {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className='min-h-screen w-[100%] flex flex-row p-5'>
+        <div className='min-h-screen w-[100%] flex flex-row p-5 bg-gradient-to-b from-[#040D12] to-[#700B97]'>
             <div className='w-full  p-10 rounded-2xl'>
                 <h1 className='text-6xl text-white mb-10'>
                     The Ultimate Vision:
