@@ -29,11 +29,11 @@ const Home = () => {
     };
 
     return (
-        <main className="snap-y snap-mandatory h-screen overflow-y-scroll">
+        <main className="snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden ">
             <div className="snap-start h-screen flex justify-center items-center w-screen">
                 <Hero />
             </div>
-            <div className="snap-start h-screen flex justify-center items-center w-screen">
+            <div className="snap-start flex justify-center items-center ">
                 <LandingPageSection1 />
             </div>
             <div className="snap-start h-screen flex justify-center items-center w-screen">
@@ -42,19 +42,19 @@ const Home = () => {
             <div className="snap-start h-screen flex justify-center items-center w-screen">
                 <LandingPageSection3 />
             </div>
-            <div className="snap-start h-screen flex justify-center items-center w-screen">
+            <div className="snap-start flex justify-center items-center w-screen">
                 <Vision />
             </div>
-            <div className="snap-start h-screen flex justify-center items-center w-screen ">
-                <Contact />
-            </div>
-            <div className='w-screen  p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>
-                <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>
-                <div className='flex flex-row'>
-                    <Image src={Github} alt={"GitHub"} />
-                    <Image src={LinkedIn} alt={"LinkedIn"} />
-                </div>
-            </div>
+            {/*<div className="snap-start h-screen flex justify-center items-center w-screen ">*/}
+            {/*    <Contact />*/}
+            {/*</div>*/}
+            {/*<div className='w-screen  p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>*/}
+            {/*    <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>*/}
+            {/*    <div className='flex flex-row'>*/}
+            {/*        <Image src={Github} alt={"GitHub"} />*/}
+            {/*        <Image src={LinkedIn} alt={"LinkedIn"} />*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </main>
     );
 };

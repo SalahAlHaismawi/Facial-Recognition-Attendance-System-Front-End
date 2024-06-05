@@ -4,21 +4,25 @@ import Section1Image from '../../../public/automateLanding.jpg';
 
 const MyComponent = () => {
     return (
-        <div className='min-h-screen w-full flex flex-row justify-between p-20 bg-gradient-to-t from-[#070739] to-[#121212] '>
-            <div className='flex flex-row justify-between w-full  rounded-xl p-20'>
-                <div className='my-auto'>
+        <div className='min-h-screen min-w-screen flex flex-row justify-between pt-10  bg-gradient-to-t from-[#070739] to-[#121212] '>
+            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen lg:p-20 '>
+                <div className=''>
                     <div
                         className='rounded-full w-[30px] h-[30px] bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-center p-1'>
                         <span>3</span>
                     </div>
-                    <h1 className='text-5xl font-bold text-white W-[30%] flex flex-col mt-5'>
+                    <h1 className='text-2xl lg:text-5xl font-bold text-white W-[30%] flex flex-col pt-5'>
                         <span className="truncate overflow-hidden whitespace-nowrap text">AUTOMATE ATTENDANCE,</span>
-                        <span className="truncate overflow-hidden whitespace-nowrap">AND IMPROVE SECURITY.</span>
+                        <span className="truncate overflow-hidden whitespace-nowrap">RECOGNITION, AND</span>
+                        <span className="truncate overflow-hidden whitespace-nowrap">HEADCOUNT.</span>
 
                     </h1>
                 </div>
-                <div className='my-auto rounded-xl max-w-[900px]'>
-                    <Image src={Section1Image} alt="Section 1" className='rounded-xl ' />
+                <div className=' rounded-xl max-w-[350px] lg:max-w-[900px] pt-10'>
+                    <Image src={Section1Image} alt="Section 1" className='rounded-xl max-w-[600px] ' style={{
+                        width: '100%',
+                        height: 'auto'
+                    }} />
                 </div>
             </div>
 

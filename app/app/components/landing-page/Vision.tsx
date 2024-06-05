@@ -29,13 +29,13 @@ const MyComponent = () => {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className='min-h-screen w-[100%] flex flex-row p-5 bg-gradient-to-b from-[#040D12] to-[#700B97]'>
+        <div className=' flex flex-row p-5 bg-gradient-to-b from-[#040D12] to-[#700B97] h-screen'>
             <div className='w-full  p-10 rounded-2xl'>
                 <h1 className='text-6xl text-white mb-10'>
                     The Ultimate Vision:
                 </h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-                    <div className='bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]  p-6 flex flex-col rounded-3xl '>
+                    <div className='bg-gradient-to-b from-[#6707FF]   to-[#b01dddcc]  p-6 flex flex-col rounded-3xl '>
                         <Image src={Package} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
                         <h1 className='text-2xl text-white mt-4 mb-2'>1. Smart Add-On</h1>
                         <p className='text-white flex-grow'>Our system integrates seamlessly with your existing CCTV cameras, using advanced algorithms like ArcFace for recognition and MTCNN for detection. This ensures high accuracy and reliability without disrupting your current operations.</p>

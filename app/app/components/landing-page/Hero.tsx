@@ -27,7 +27,7 @@ const MyComponent = () => {
     };
 
     return (
-        <div className='flex flex-col items-center  w-full min-h-screen p-10'>
+        <div className='flex flex-col items-center   min-h-screen p-10 max-w-screen'>
             <div className='w-full flex flex-row justify-between'>
                 <div >
                     <h1 className='text-white text-xl'>Vision</h1>
@@ -44,13 +44,13 @@ const MyComponent = () => {
                 </button>
             </div>
 
-            <div className='flex flex-grow items-center justify-center w-full'>
-                <div className='w-[80%] text-white mx-auto flex items-center text-center gap-3 flex-wrap'>
+            <div className='flex flex-grow items-center justify-center w-full text-center'>
+                <div className='w-[80%] text-white mx-auto flex items-center text-center gap-3 flex-wrap text-center'>
                     {heroText.map((el, i) => (
                         <motion.span
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
-                            className='text-7xl font-bold'
+                            className='text-3xl lg:text-6xl font-bold right'
                             transition={{
                                 duration: 0.7,
                                 delay: i / 10,
