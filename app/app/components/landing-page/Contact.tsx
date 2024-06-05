@@ -29,14 +29,14 @@ const MyComponent = () => {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className='min-h-screen w-screen flex flex-row p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] flex'>
-            <div className=' w-full  p-10 rounded-2xl border jusitfy-center '>
+        <div className='min-h-screen w-screen flex flex-col align p-10 bg-gradient-to-b from-[#151512] to-[#151515] flex items-center '>
+            <div className=' w-1/2  p-10 rounded-2xl border jusitfy-center flex flex-col items-center border-4 border-Lpurple '>
             <h1 className='text-6xl text-white'>
                 Contact us:
             </h1>
-            <div className='w-full justify-center'>
+            <div className='w-full justify-center text-white flex'>
                 <form className='flex flex-col gap-5 p-5 w-full 2xl:w-[50%] '>
-                    <label htmlFor="name" className='text-lg'>Name:</label>
+                    <label htmlFor="name" className='text-lg w-1/2'>Name:</label>
                     <input type="text" id="name" name="name" className='p-2 rounded-md' />
                     <label htmlFor="email" className='text-lg'>Email:</label>
                     <input type="email" id="email" name="email" className='p-2 rounded-md' />
@@ -52,3 +52,18 @@ const MyComponent = () => {
 };
 
 export default MyComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
