@@ -29,32 +29,34 @@ const Home = () => {
     };
 
     return (
-        <main className="snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden ">
-            <div className="snap-start h-screen flex justify-center items-center w-screen">
+        <main className="h-screen overflow-y-auto scrollbar-custom overflow-x-hidden snap-y snap-mandatory">
+            <div className="h-screen flex justify-center items-center w-screen snap-start">
                 <Hero />
             </div>
-            <div className="snap-start flex justify-center items-center ">
+            <div className="flex justify-center items-center h-screen w-screen snap-end">
                 <LandingPageSection1 />
             </div>
-            <div className="snap-start h-screen flex justify-center items-center w-screen">
+            <div className="flex justify-center items-center h-screen w-screen snap-start">
                 <LandingPageSection2 />
             </div>
-            <div className="snap-start h-screen flex justify-center items-center w-screen">
+            <div className="flex justify-center items-center h-screen w-screen snap-start">
                 <LandingPageSection3 />
             </div>
-            <div className="snap-start flex justify-center items-center w-screen">
+            <div className="flex justify-center items-center w-screen h-[400vh]  ">
                 <Vision />
             </div>
-            {/*<div className="snap-start h-screen flex justify-center items-center w-screen ">*/}
-            {/*    <Contact />*/}
-            {/*</div>*/}
-            {/*<div className='w-screen  p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>*/}
-            {/*    <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>*/}
-            {/*    <div className='flex flex-row'>*/}
-            {/*        <Image src={Github} alt={"GitHub"} />*/}
-            {/*        <Image src={LinkedIn} alt={"LinkedIn"} />*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="snap-start  flex justify-center items-center w-screen flex flex-col ">
+                <Contact/>
+                <div
+                    className='w-screen p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>
+                    <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>
+                    <div className='flex flex-row snap-start'>
+                        <Image src={Github} alt={"GitHub"}/>
+                        <Image src={LinkedIn} alt={"LinkedIn"}/>
+                    </div>
+                </div>
+            </div>
+
         </main>
     );
 };
