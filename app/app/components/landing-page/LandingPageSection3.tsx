@@ -4,7 +4,7 @@ import Section1Image from '../../../public/automateLanding.jpg';
 
 const MyComponent = () => {
     return (
-        <div className='min-h-screen min-w-screen flex flex-row justify-between pt-10  bg-gradient-to-t from-[#070739] to-[#121212] '>
+        <div className='min-h-screen min-w-screen flex flex-row justify-between pt-10  bg-gradient-to-t from-[#8013D6] to-[#121212] '>
             <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen lg:p-20 '>
                 <div className=''>
                     <div

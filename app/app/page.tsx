@@ -14,6 +14,7 @@ import LandingPageSection2 from "@/app/components/landing-page/LandingPageSectio
 import Vision from "@/app/components/landing-page/Vision";
 import Contact from "@/app/components/landing-page/Contact";
 import LinkedIn from "../public/linkedIn.png";
+import Demo from "@/app/components/landing-page/Demo";
 
 const Home = () => {
     const signInWithMicrosoft = async () => {
@@ -33,30 +34,37 @@ const Home = () => {
             <div className="h-screen flex justify-center items-center w-screen snap-start">
                 <Hero />
             </div>
-            <div className="flex justify-center items-center h-screen w-screen snap-end">
+            <div className="flex justify-center items-center h-screen w-screen snap-center">
                 <LandingPageSection1 />
             </div>
-            <div className="flex justify-center items-center h-screen w-screen snap-start">
+            <div className="flex justify-center items-center h-screen w-screen snap-center">
                 <LandingPageSection2 />
             </div>
-            <div className="flex justify-center items-center h-screen w-screen snap-start">
+            <div className="flex justify-center items-center h-screen w-screen snap-center">
                 <LandingPageSection3 />
             </div>
-            <div className="flex justify-center items-center w-screen h-[400vh]  ">
+            <div className="flex justify-center items-center w-screen  snap-center  ">
                 <Vision />
             </div>
-            <div className="snap-start  flex justify-center items-center w-screen flex flex-col ">
+            <div className="flex justify-center items-center w-screen h-screen snap-center ">
+                <Demo />
+            </div>
+            <div className="snap-center  flex justify-center items-center w-screen flex flex-col pt-10">
                 <Contact/>
                 <div
-                    className='w-screen p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>
+                    className='w-screen p-5  bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>
                     <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>
                     <div className='flex flex-row snap-start'>
-                        <Image src={Github} alt={"GitHub"}/>
-                        <Image src={LinkedIn} alt={"LinkedIn"}/>
+                        <a href="https://github.com/SalahAlHaismawi" target="_blank" rel="noopener noreferrer">
+                            <Image src={Github} alt={"GitHub"} width={55}/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/salah-alhaismawi-a62696228/" target="_blank"
+                           rel="noopener noreferrer">
+                            <Image src={LinkedIn} alt={"LinkedIn"} width={55}/>
+                        </a>
                     </div>
                 </div>
             </div>
-
         </main>
     );
 };
