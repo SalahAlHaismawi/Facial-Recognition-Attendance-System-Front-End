@@ -70,11 +70,11 @@ const MyComponent = () => {
                 <div className='w-full justify-center text-white flex'>
                     <form className='flex flex-col gap-5 p-5 w-full 2xl:w-[50%]' onSubmit={handleSubmit}>
                         <label htmlFor="name" className='text-sm w-1/2'>Name:</label>
-                        <input type="text" id="name" name="name" className='p-2 rounded-md' value={formData.name} onChange={handleChange} />
+                        <input type="text" id="name" name="name" className='p-2 rounded-md text-black' value={formData.name} onChange={handleChange} />
                         <label htmlFor="email" className='text-sm'>Email:</label>
-                        <input type="email" id="email" name="email" className='p-2 rounded-md' value={formData.email} onChange={handleChange} />
+                        <input type="email" id="email" name="email" className='p-2 rounded-md text-black' value={formData.email} onChange={handleChange} />
                         <label htmlFor="message" className='text-sm'>Message:</label>
-                        <textarea id="message" name="message" className='p-2 rounded-md h-40' value={formData.message} onChange={handleChange} />
+                        <textarea id="message" name="message" className='p-2 rounded-md h-40 text-black' value={formData.message} onChange={handleChange} />
                         <button type="submit" className='bg-[#6707FF] text-white p-2 rounded-md'>Submit</button>
                     </form>
                 </div>
