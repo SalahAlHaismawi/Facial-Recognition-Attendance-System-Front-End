@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Github from '../public/icons/GitHub.png';
 import Microsoft from '../public/icons/Microsoft.png';
-import Linkedin from '../public/icons/LinkedIn.png';
+import LinkedIn from '../public/icons/LinkedIn.png';
 import { AuthProvider } from '../context/AuthContext';
 import { OAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebaseConfig";
@@ -13,7 +13,6 @@ import LandingPageSection3 from "@/app/components/landing-page/LandingPageSectio
 import LandingPageSection2 from "@/app/components/landing-page/LandingPageSection2";
 import Vision from "@/app/components/landing-page/Vision";
 import Contact from "@/app/components/landing-page/Contact";
-import LinkedIn from "../public/linkedIn.png";
 import Demo from "@/app/components/landing-page/Demo";
 
 const Home = () => {
@@ -43,26 +42,24 @@ const Home = () => {
             <div className="flex justify-center items-center h-screen w-screen snap-center">
                 <LandingPageSection3 />
             </div>
-            <div className="flex justify-center items-center w-screen  snap-center  ">
+            <div className="flex justify-center items-center w-screen snap-center">
                 <Vision />
             </div>
-            <div className="flex justify-center items-center w-screen h-screen snap-center ">
+            <div className="flex justify-center items-center w-screen h-screen snap-center">
                 <Demo />
             </div>
-            <div className="snap-center  flex justify-center items-center w-screen flex flex-col pt-10">
-                <Contact/>
-                <div
-                    className='w-screen p-5  bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between'>
-                    <h1 className='text-xl'>Developed By: Salah AlHaismawi</h1>
-                    <div className='flex flex-row snap-start'>
-                        <a href="https://github.com/SalahAlHaismawi" target="_blank" rel="noopener noreferrer">
-                            <Image src={Github} alt={"GitHub"} width={55}/>
-                        </a>
-                        <a href="https://www.linkedin.com/in/salah-alhaismawi-a62696228/" target="_blank"
-                           rel="noopener noreferrer">
-                            <Image src={LinkedIn} alt={"LinkedIn"} width={55}/>
-                        </a>
-                    </div>
+            <div className="snap-center flex justify-center items-center w-screen flex flex-col pt-10">
+                <Contact />
+            </div>
+            <div className="w-screen p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between">
+                <h1 className="text-xl">Developed By: Salah AlHaismawi</h1>
+                <div className="flex flex-row snap-start">
+                    <a href="https://github.com/SalahAlHaismawi" target="_blank" rel="noopener noreferrer">
+                        <Image src={Github} alt="GitHub" width={55} height={55} />
+                    </a>
+                    <a href="https://www.linkedin.com/in/salah-alhaismawi-a62696228/" target="_blank" rel="noopener noreferrer">
+                        <Image src={LinkedIn} alt="LinkedIn" width={55} height={55} />
+                    </a>
                 </div>
             </div>
         </main>
