@@ -29,6 +29,8 @@ const Home = () => {
     };
 
     return (
+        <AuthProvider>
+
         <main className="h-screen overflow-y-auto scrollbar-custom overflow-x-hidden snap-y snap-mandatory">
             <div className="h-screen flex justify-center items-center w-screen snap-start">
                 <Hero />
@@ -63,6 +65,8 @@ const Home = () => {
                 </div>
             </div>
         </main>
+        </AuthProvider>
+
     );
 };
 

@@ -3,8 +3,9 @@ import Image from "next/image";
 import Microsoft from "@/public/icons/Microsoft.png";
 import {motion} from "framer-motion";
 import {OAuthProvider, signInWithPopup} from "firebase/auth";
-import {auth} from "@/firebaseConfig";
+import {auth, db} from "@/firebaseConfig";
 import {useRouter} from "next/navigation";
+import {doc, getDoc, setDoc} from "@firebase/firestore";
 
 const MyComponent = () => {
     const heroText= 'Unlock the power of AI For The Ultimate security and attendance tracking'.split(' ');
@@ -16,13 +17,43 @@ const MyComponent = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
+
+            // Extract student ID from email (assuming email format is studentId@domain.com)
+            const studentId = user.email.split('@')[0];
+            const studentName = user.displayName || 'Unnamed';
+            const studentPassword = '1234'; // This should be set securely in a real-world scenario
+
+            // Check if user already exists in Firestore
+            const userDocRef = doc(db, "Students", studentId); // Use studentId as the document ID
+            const userDoc = await getDoc(userDocRef);
+
+            if (!userDoc.exists()) {
+                // Store additional user data in Firestore
+                await setDoc(userDocRef, {
+                    student_id: studentId,
+                    student_name: studentName,
+                    student_password: studentPassword,
+                    email: user.email,
+                    photoURL: user.photoURL
+                });
+            } else {
+                // Update existing user data if needed
+                await setDoc(userDocRef, {
+                    student_id: studentId,
+                    student_name: studentName,
+                    student_password: studentPassword,
+                    email: user.email,
+                    photoURL: user.photoURL
+                }, { merge: true });
+            }
+
             console.log("User signed in: ", user);
-            // redirect to the dashboard
-            router.push('admin-dashboard');
-            // You can now handle the signed-in user in your app
+            // Redirect to the dashboard
+            router.push('/student-dashboard');
+            return user; // Return the user so the calling component can handle routing
         } catch (error) {
             console.error("Authentication failed: ", error);
-            alert("Login failed: " + error.message);
+            throw new Error("Login failed: " + error.message);
         }
     };
 
