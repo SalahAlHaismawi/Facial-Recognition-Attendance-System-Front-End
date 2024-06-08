@@ -11,7 +11,7 @@ const DetectStream: React.FC = () => {
             streamSocket.current.close();
         }
 
-        encodeSocket.current = new WebSocket('ws://localhost:8000/ws/encode');
+        encodeSocket.current = new WebSocket('ws://localhost:8000/ws/yolodetection');
 
         encodeSocket.current.onopen = () => {
             if(encodeSocket.current) { // Add type check

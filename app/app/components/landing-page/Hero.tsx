@@ -6,9 +6,10 @@ import {OAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth, db} from "@/firebaseConfig";
 import {useRouter} from "next/navigation";
 import {doc, getDoc, setDoc} from "@firebase/firestore";
+import VisionCafe from '../../../public/Visioncafe.png';
 
 const MyComponent = () => {
-    const heroText= 'Unlock the power of AI For The Ultimate security and attendance tracking'.split(' ');
+    const heroText= 'Integrate Face Detection and Recognition Into your existing CCTV Network, Hassle Free.'.split(' ');
     const router = useRouter();
 
     const signInWithMicrosoft = async () => {
@@ -58,17 +59,22 @@ const MyComponent = () => {
     };
 
     return (
-        <div className='flex flex-col items-center   min-h-screen p-10 max-w-screen'>
-            <div className='w-full flex flex-row justify-between'>
-                <div >
-                    <h1 className='text-white text-xl'>Vision</h1>
-                    <h1 className='text-white text-xl'>Cafe</h1>
+        <div className='flex flex-col items-center   min-h-screen pl-10 pr-10 pb-10 max-w-screen'>
+            <div className='w-full flex flex-row justify-between my-auto'>
+                <div  className='max-w-[100px] flex lg:max-w-[150px] '>
+                   <Image
+                            src={VisionCafe}
+
+
+                            alt="Vision Cafe"
+
+                        />
                 </div>
 
                 <button
                     type="submit"
                     onClick={signInWithMicrosoft}
-                    className="w-[120px] h-[50px] flex flex-row justify-between items-center p-2 border border-transparent rounded-xl shadow-lg text-md font-medium text-white bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]"
+                    className="w-[120px] h-[50px] flex flex-row justify-between items-center p-2 border border-transparent rounded-xl shadow-lg text-md font-medium text-white bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] my-auto"
                 >
                     <p className='text-md'>Sign In</p>
                     <Image src={Microsoft} alt={'login-microsoft'}/>

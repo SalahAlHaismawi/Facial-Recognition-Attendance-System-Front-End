@@ -44,7 +44,7 @@ const Home = () => {
             <div className="flex justify-center items-center h-screen w-screen snap-center">
                 <LandingPageSection3 />
             </div>
-            <div className="flex justify-center items-center w-screen snap-center">
+            <div className="flex justify-center items-center w-screen ">
                 <Vision />
             </div>
             <div className="flex justify-center items-center w-screen h-screen snap-center">

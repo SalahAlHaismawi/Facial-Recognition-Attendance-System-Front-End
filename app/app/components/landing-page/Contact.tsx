@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Package from '../../../public/Package.png';
 import Security from '../../../public/Security.png';
 import Future from '../../../public/Future.png';
-
 const MyComponent = () => {
     const text = "Vision Cafe";
     const [displayedText, setDisplayedText] = useState("");

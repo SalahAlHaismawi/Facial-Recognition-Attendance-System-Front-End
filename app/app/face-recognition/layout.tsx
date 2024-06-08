@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
 
                 <div className="flex flex-col flex-grow">
                     <Suspense fallback={<Loading />}>
-                        <VideoStream />
+                        <VideoStream link={'ws://localhost:8000/ws/video'} />
                     </Suspense>
                 </div>
             </div>

@@ -10,7 +10,7 @@ import loadingGif from "@/public/loadingGif.gif";
 // @ts-nocheck
 
 
-const Livestream = () => {
+const Livestream = ({ link }) => {
     const videoRef = useRef(null);  // Reference to the video element
     const [loading, setLoading] = useState(true);
     const [attendanceList, setAttendanceList] = useState([]);
@@ -25,7 +25,7 @@ const Livestream = () => {
     useEffect(() => {
         const initWebSocket = () => {
             // @ts-ignore
-            Socket.current = new WebSocket('ws://localhost:8000/ws/video');
+            Socket.current = new WebSocket(link);
 
             // @ts-ignore
             Socket.binaryType = 'blob'; // Set binary type to 'blob'

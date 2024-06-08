@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import Section1Image from '../../../public/securityLanding.jpg';
+import Section1Image from '../../../public/faceDetection.png';
 
 const MyComponent = () => {
     return (
@@ -13,7 +13,7 @@ const MyComponent = () => {
                     </div>
                     <h1 className='text-2xl lg:text-5xl font-bold text-white W-[30%] flex flex-col pt-5'>
                         <span className="truncate overflow-hidden whitespace-nowrap text">UPGRADE EXISTING CCTV,</span>
-                        <span className="truncate overflow-hidden whitespace-nowrap">WITH FACE DETECTION</span>
+                        <span className="truncate overflow-hidden whitespace-nowrap">WITH RELIABLE FACE DETECTION</span>
                         <span className="truncate overflow-hidden whitespace-nowrap">AND RECOGNITION.</span>
 
                     </h1>

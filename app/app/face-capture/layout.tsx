@@ -7,22 +7,25 @@ import {AuthProvider} from '../../context/AuthContext'
 import useProtectedRoute from '@/context/useProtectedRoute';
 import { useLocation } from 'react-router-dom'; // Import useLocation
 import DetectStream from '../components/face-detection/detect-stream';
+import React, {Suspense} from "react";
+import Livestream from "@/app/components/face-recognition/Livestream";
+import Loading from "@/app/face-recognition/loading";
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useProtectedRoute(); 
     return (
-    
-        <div className="flex h-screen w-screen justify-center pt-10">
-      <SideBar />
-      <div className="flex flex-col flex-grow">
-        
-        <DetectStream/>
-        <main className="overflow-auto">{children}</main>
-      </div>
-    </div>
-    
-      
-    );
-  };
 
-  export default Layout;
+        <div className="flex h-screen w-screen justify-center pt-10">
+          <SideBar/>
+          <div className="flex flex-col flex-grow">
+            <Suspense fallback={<Loading/>}>
+              <Livestream link={'ws://localhost:8000/ws/yolodetection'}/>
+            </Suspense>
+          </div>
+        </div>
+
+
+    );
+};
+
+export default Layout;
