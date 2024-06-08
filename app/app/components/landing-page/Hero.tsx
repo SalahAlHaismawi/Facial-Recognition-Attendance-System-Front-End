@@ -65,7 +65,7 @@ const MyComponent = () => {
                    <Image
                             src={VisionCafe}
 
-                            className='pt-3'
+                            className='mt-3'
                             alt="Vision Cafe"
 
                         />
