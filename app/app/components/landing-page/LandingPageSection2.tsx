@@ -20,7 +20,7 @@ const MyComponent = () => {
                         <span className="truncate overflow-hidden whitespace-nowrap">MACHINE LEARNING MODELS</span>
 
                     </h1>
-                    <p className='text-white text-sm pl-5 pr-5'>
+                    <p className='text-white text-md pl-5 pr-5'>
                         In an era where technology rapidly evolves, staying ahead requires tools that not only keep pace but also set the pace. Our state-of-the-art machine learning models represent the pinnacle of innovation in artificial intelligence, providing unparalleled accuracy and efficiency.
 
                     </p>

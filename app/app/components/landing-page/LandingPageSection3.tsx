@@ -20,7 +20,7 @@ const MyComponent = () => {
                         <span className="truncate overflow-hidden whitespace-nowrap">WITH REAL-TIME DATA</span>
 
                     </h1>
-                    <p className='text-white text-sm pl-5 pr-5'>
+                    <p className='text-white text-md pl-5 pr-5'>
                         Elevate your management capabilities with our innovative platform, designed to streamline
                         operations and ensure seamless access to information wherever you are. By leveraging real-time
                         data processing, our system enables faster decision-making, reduces administrative burdens, and
