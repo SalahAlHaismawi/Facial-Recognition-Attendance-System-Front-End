@@ -61,11 +61,11 @@ const MyComponent = () => {
     return (
         <div className='flex flex-col items-center   min-h-screen pl-10 pr-10 pb-10 max-w-screen'>
             <div className='w-full flex flex-row justify-between my-auto'>
-                <div  className='max-w-[100px] flex lg:max-w-[150px] '>
+                <div  className='max-w-[100px] flex lg:max-w-[150px]  '>
                    <Image
                             src={VisionCafe}
 
-
+                            className='pt-3'
                             alt="Vision Cafe"
 
                         />
