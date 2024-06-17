@@ -6,6 +6,7 @@ import { Poppins } from 'next/font/google';
 import Sidebar from "@/app/components/shared/SideBar";
 import { AuthProvider } from "@/context/AuthContext";
 import LoadingSkeleton from "@/app/components/shared/LoadingSkeleton";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         </Head>
         <body className={poppinsFont.className}>
         {children}
+        <SpeedInsights />
         </body>
         </html>
       </AuthProvider>
