@@ -5,9 +5,9 @@ import SideBar from "@/app/components/shared/SideBar"; // Adjust the import path
 
 const ManageStudents = () => {
     return (
-        <div className="flex h-screen w-screen justify-center pt-10">
+        <div className="flex flex-row h-screen w-screen justify-center pt-10">
             <SideBar/>
-            <div className="flex flex-col flex-grow p-10">
+            <div className=" p-10 w-full">
                 <Manage/>
 
             </div>

@@ -26,7 +26,7 @@ const SideBar: React.FC = () => {
           className="p-4"
         />
       </div>
-      <div className="mt-10">
+      <div className="">
         <ul className="space-y-4">
           
 

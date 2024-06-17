@@ -280,6 +280,7 @@ const Livestream = ({ link }) => {
                                 key={attendance.studentId}>
                                 <div onClick={() => handleImageClick(attendance.imageUrl)}>
                                     <h3 className='pl-1 pb-1 text-sm'>{attendance.studentName}</h3>
+                                    <h3 className='pl-1 pb-1 text-sm'>{attendance.studentId}</h3>
 
                                     <Image
                                         src={attendance.imageUrl}

@@ -115,11 +115,18 @@ const Profile = () => {
                 )}
             </div>
             <h2 className="text-white mt-4 text-lg">Face Recognition Pictures:</h2>
+            <div className="mt-4">
+                <label className="block text-white mb-2">Upload New Picture:</label>
+                <input type="file" onChange={handleUpload} disabled={uploading} className="block w-full text-white"/>
+                {uploading && <p className="text-white">Uploading...</p>}
+            </div>
             <div className="flex flex-wrap gap-2 p-2">
                 {captureUrls.length > 0 ? (
                     captureUrls.map((url, index) => (
-                        <div key={index} className="relative p-1 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] rounded-lg w-full sm:w-1/4 md:w-1/5 transition-opacity duration-500 ease-in-out transform">
-                            <Image src={url} alt={`Capture ${index + 1}`} width={150} height={150} className="w-full h-auto rounded-lg object-cover" />
+                        <div key={index}
+                             className="relative p-1 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] rounded-lg w-full sm:w-1/4 md:w-1/5 transition-opacity duration-500 ease-in-out transform">
+                            <Image src={url} alt={`Capture ${index + 1}`} width={150} height={150}
+                                   className="w-full h-auto rounded-lg object-cover"/>
                             <button
                                 onClick={() => handleDelete(url)}
                                 className="absolute top-0 right-0 mt-2 mr-2 bg-red-500 text-white rounded-full p-1 text-xs"
@@ -132,11 +139,7 @@ const Profile = () => {
                     <p className='text-white'>No captures available</p>
                 )}
             </div>
-            <div className="mt-4">
-                <label className="block text-white mb-2">Upload New Picture:</label>
-                <input type="file" onChange={handleUpload} disabled={uploading} className="block w-full text-white"/>
-                {uploading && <p className="text-white">Uploading...</p>}
-            </div>
+
         </div>
     );
 };

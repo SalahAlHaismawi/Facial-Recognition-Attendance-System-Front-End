@@ -9,12 +9,14 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebaseConfig';
 import Profile from "@/app/components/shared/Profile"; // Import storage
 import Link from 'next/link';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     useProtectedRoute();
     const { user, isLoading } = useContext(AuthContext); // Get user from context
     const [captureUrls, setCaptureUrls] = useState<string[]>([]);
     const [isExpanded, setIsExpanded] = useState(false); // State to manage expanded view
+    const [subjectsAttendance, setSubjectsAttendance] = useState([]);
 
     useEffect(() => {
         const fetchCaptures = async () => {
@@ -22,9 +24,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 // Extract student ID from email (assuming email format is studentId@domain.com)
                 const email = user.email;
                 const studentId = email.split('@')[0];
+                const studentName = user.displayName || 'Unnamed';
                 console.log('studentId:', studentId); // Debug log for actual student ID
 
-                const folderRef = ref(storage, `${studentId}`); // Path to the folder
+                const folderRef = ref(storage, `${studentName}`); // Path to the folder
 
                 try {
                     const result = await listAll(folderRef);
@@ -54,17 +57,59 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         setIsExpanded(!isExpanded);
     };
 
+    const fetchStudentSubjectsAndAttendance = async (studentId) => {
+        const subjects = [];
+        const subjectsRef = collection(db, 'Subjects'); // Assuming 'Subjects' is your collection
+        const q = query(subjectsRef, where('student_id_list', 'array-contains', studentId));
+
+        const subjectSnapshot = await getDocs(q);
+        subjectSnapshot.forEach(doc => {
+            subjects.push(doc.data());
+        });
+
+        // Fetch attendance for each subject
+        const attendanceRef = collection(db, 'Attendance');
+        const attendancePromises = subjects.map(async subject => {
+            const attendanceQuery = query(attendanceRef, where('subject_id', '==', subject.subject_id), where('week', '==', 'Week 1'));
+            const attendanceSnapshot = await getDocs(attendanceQuery);
+            let totalSessions = 0;
+            let attendedSessions = 0;
+            attendanceSnapshot.forEach(doc => {
+                totalSessions++;
+                if (doc.data().students_attended.includes(studentId)) {
+                    attendedSessions++;
+                }
+            });
+            return {
+                subject_name: subject.subject_name,
+                attendance_percentage: (attendedSessions / totalSessions) * 100
+            };
+        });
+
+        return Promise.all(attendancePromises);
+    };
+
+    useEffect(() => {
+        if (user) {
+            const studentId = user.email.split('@')[0]; // Ensure email format gives correct ID
+            fetchStudentSubjectsAndAttendance(studentId)
+                .then(subjects => {
+                    setSubjectsAttendance(subjects); // Set the fetched subjects with their attendance
+                })
+                .catch(error => console.error('Failed to fetch subjects or attendance:', error));
+        }
+    }, [user]);
     return (
         <AuthProvider>
 
             <div className="flex flex-col h-screen overflow-y-scroll">
-                <div className='flex flex-row-reverse p-5 justify-between'>
+                <div className='flex flex-row-reverse gap-5 justify-between'>
                     <Link href="/profile">
                         <div className='flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] p-4 w-[65px] h-[65px] cursor-pointer'>
                             <Image src={Account} alt={'Account'} className='w-10 h-10 object-cover rounded-full'/>
                         </div>
                     </Link>
-                    <div className='bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-sm w-3/4 rounded-xl p-2'>
+                    <div className='bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-sm w-full rounded-xl p-2'>
                         <h1>
                             {isLoading ? 'Loading...' : user ? `Welcome Back, ${user.displayName || 'User'}!` : 'Welcome Back, Guest!'}
                         </h1> {/* Display username */}

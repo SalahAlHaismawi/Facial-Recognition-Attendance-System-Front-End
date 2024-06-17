@@ -80,6 +80,14 @@ const ManageStudents = () => {
             const updatedStudentList = subjectData.student_id_list ? [...subjectData.student_id_list, studentId] : [studentId];
             await updateDoc(subjectDoc, { student_id_list: updatedStudentList });
             alert(`Student assigned to subject: ${subjectId}`);
+            setSubjects(prevSubjects => {
+                return prevSubjects.map(subject => {
+                    if (subject.id === subjectId) {
+                        return { ...subject, student_id_list: updatedStudentList };
+                    }
+                    return subject;
+                });
+            });
         } else {
             console.log('No such document!');
         }
@@ -112,10 +120,35 @@ const ManageStudents = () => {
             student_id_list: []
         });
     };
+    const handleRemoveStudentFromSubject = async (studentId, subjectId) => {
+        const subjectDocRef = doc(db, 'Subject', subjectId);
+        const subjectSnapshot = await getDoc(subjectDocRef);
+        if (subjectSnapshot.exists()) {
+            const subjectData = subjectSnapshot.data();
+            const filteredStudentList = subjectData.student_id_list.filter(id => id !== studentId);
+            await updateDoc(subjectDocRef, { student_id_list: filteredStudentList });
+
+            // After successfully updating Firestore, update local state
+            updateLocalSubjects(subjectId, filteredStudentList);
+            alert(`Student removed from subject: ${subjectId}`);
+        } else {
+            console.error('No such document!');
+        }
+    };
+    const updateLocalSubjects = (subjectId, updatedStudentList) => {
+        setSubjects(prevSubjects => prevSubjects.map(subject => {
+            if (subject.id === subjectId) {
+                return { ...subject, student_id_list: updatedStudentList };
+            }
+            return subject;
+        }));
+    };
 
     return (
-        <div className="p-4">
-            <h1 className="text-2xl mb-4 text-white">Register New Student:</h1>
+        <div className=" w-full h-full">
+            <h1 className="text-3xl mb-4 text-white">Manage Students:</h1>
+
+            <h1 className="text-xl mb-4 text-white">Register New Student:</h1>
             <div className="mb-4">
                 <input
                     type="text"
@@ -198,11 +231,12 @@ const ManageStudents = () => {
                     onChange={handleSubjectInputChange}
                     className="border p-2 mr-2"
                 />
-                <button onClick={handleAddSubject} className="bg-green-500 text-white p-2 mt-4 rounded">Add Subject</button>
+                <button onClick={handleAddSubject} className="bg-green-500 text-white p-2 mt-4 rounded">Add Subject
+                </button>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white">
+            <div className="overflow-x-auto overflow-y-scroll max-h-[50vh] rounded-xl">
+                <table className="min-w-full bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white rounded-xl">
                     <thead>
                     <tr>
                         <th className="w-1/6 px-4 py-2">Student ID</th>
@@ -219,28 +253,51 @@ const ManageStudents = () => {
                             <td className="border px-4 py-2">{student.student_name}</td>
                             <td className="border px-4 py-2">{student.email}</td>
                             <td className="border px-4 py-2">
-                                <select
-                                    value={selectedSubjects[student.id] || ''}
-                                    onChange={(e) => handleSubjectChange(student.id, e.target.value)}
-                                    className="bg-gray-700 text-white p-2 rounded"
-                                >
-                                    <option value="">Select Subject</option>
-                                    {subjects.map(subject => (
-                                        <option key={subject.id} value={subject.id}>
-                                            {subject.subject_name}
-                                        </option>
+                                <div className="flex flex-col">
+                                    {/* Dropdown to assign new subjects */}
+                                    <div className='flex flex-col'>
+                                        <select
+                                            value={selectedSubjects[student.id] || ''}
+                                            onChange={(e) => handleSubjectChange(student.id, e.target.value)}
+                                            className="bg-gray-700 text-white p-2 rounded mb-2"
+                                        >
+                                            <option value="">Select Subject</option>
+                                            {subjects.map(subject => (
+                                                <option key={subject.id} value={subject.id}>
+                                                    {subject.subject_name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <button
+                                            onClick={() => handleAssignSubject(student.id)}
+                                            className="bg-blue-500 text-white p-3  rounded-xl  text-sm pb-5 "
+                                        >
+                                            Assign
+                                        </button>
+                                    </div>
+
+                                    {/* List of assigned subjects with removal option */}
+                                    {subjects.filter(subject => subject.student_id_list.includes(student.id)).map(subject => (
+                                        <div  key={subject.id}
+                                             className="flex justify-between items-center bg-gray-800 p-1 rounded mb-1">
+                                            <span>{subject.subject_name}</span>
+                                            <button
+                                                onClick={() => handleRemoveStudentFromSubject(student.id, subject.id)}
+                                                className="bg-red-500 text-white p-1 rounded"
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
                                     ))}
-                                </select>
-                                <button
-                                    onClick={() => handleAssignSubject(student.id)}
-                                    className="bg-blue-500 text-white p-1 rounded ml-2"
-                                >
-                                    Assign
-                                </button>
+                                </div>
                             </td>
                             <td className="border px-4 py-2">
-                                <button onClick={() => handleEditStudent(student)} className="bg-yellow-500 text-white p-1 rounded mr-2">Edit</button>
-                                <button onClick={() => handleDeleteStudent(student.id)} className="bg-red-500 text-white p-1 rounded">Delete</button>
+                                <button onClick={() => handleEditStudent(student)}
+                                        className="bg-yellow-500 text-white p-1 rounded mr-2">Edit
+                                </button>
+                                <button onClick={() => handleDeleteStudent(student.id)}
+                                        className="bg-red-500 text-white p-1 rounded">Delete
+                                </button>
                             </td>
                         </tr>
                     ))}

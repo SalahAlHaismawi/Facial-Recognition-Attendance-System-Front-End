@@ -19,6 +19,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const [attendanceData, setAttendanceData] = useState([]);
     const [studentIdList, setStudentIdList] = useState([]); // List of all student IDs in the subject
     const [selectedStudentId, setSelectedStudentId] = useState(''); // Selected student ID for manual attendance
+    const [webSocket, setWebSocket] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [encoding, setEncoding] = useState(false);
+    const [encodingStatus, setEncodingStatus] = useState('No encoding in progress');
+    const [intervalId, setIntervalId] = useState(null);
 
     const predefinedSubjects = ["Calculus", "Physics", "Chemistry"]; // Add your predefined subjects here
 
@@ -181,13 +186,59 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             console.error('Error deleting attendance:', error);
         }
     };
+    useEffect(() => {
+        const fetchEncodingStatus = () => {
+            fetch('http://localhost:8000/encoding-status')
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    if (data.encoding === false) { // Assuming the API returns { encoding: false } when done
+                        setEncodingStatus('complete');
+                        clearInterval(intervalId);  // Stop polling
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    setEncodingStatus('error');  // Handle errors
+                });
+        };
+
+        const id = setInterval(fetchEncodingStatus, 5000); // Poll every 5 seconds
+        setIntervalId(id); // Store interval ID for cleanup
+
+        return () => {
+            clearInterval(id); // Clear interval on component unmount
+        };
+    }, []);
+
+    const startEncoding = () => {
+        setEncodingStatus("Encoding in progress..."); // Start encoding when button is clicked
+
+        // After 10 seconds, change status to "Done"
+        setTimeout(() => {
+            setEncodingStatus("Done"); // End encoding
+
+            // Optionally reset to "No encoding in progress" after some time
+            setTimeout(() => {
+                setEncodingStatus("No encoding in progress");
+            }, 5000); // After 5 more seconds, reset the status
+        }, 10000); // 10000 milliseconds = 10 seconds
+        fetch('http://localhost:8000/start-encoding', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.error('Error starting encoding:', error));
+    };
+
 
     return (
         <AuthProvider>
             <div className="flex h-screen w-screen justify-center pt-10">
                 <SideBar />
                 <div className="flex flex-col flex-grow p-10">
-                    <DetectStream />
                     <div >
 
                         <div className="mb-4 flex justify-between  ">
@@ -207,9 +258,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                     ))}
                                 </select>
                             </div>
+                            <button onClick={startEncoding}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Start Encoding
+                            </button>
+                            <div className='text-white mt-4'>Status: {encodingStatus}</div>
 
-                            <div className="mt-4">
-                                <label htmlFor="studentSelect" className="mr-2 text-white">Add Manual Attendance:</label>
+
+                            <div className="">
+                                <label htmlFor="studentSelect" className="mr-2 text-white">Add Manual
+                                    Attendance:</label>
                                 <select
                                     id="studentSelect"
                                     value={selectedStudentId}
@@ -234,7 +292,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
                         {selectedWeek && (
                             <div className="mb-4">
-                                <label htmlFor="subjectSelect" className="mr-2 text-white">Select Subject:</label>
+                            <label htmlFor="subjectSelect" className="mr-2 text-white">Select Subject:</label>
                                 <select
                                     id="subjectSelect"
                                     value={selectedSubject}
