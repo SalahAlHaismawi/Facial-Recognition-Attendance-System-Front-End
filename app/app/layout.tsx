@@ -7,6 +7,7 @@ import Sidebar from "@/app/components/shared/SideBar";
 import { AuthProvider } from "@/context/AuthContext";
 import LoadingSkeleton from "@/app/components/shared/LoadingSkeleton";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         <body className={poppinsFont.className}>
         {children}
         <SpeedInsights />
+        <Analytics/>
         </body>
         </html>
       </AuthProvider>
