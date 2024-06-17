@@ -91,13 +91,13 @@ const MyComponent = () => {
                 </button>
             </div>
 
-            <div className='flex flex-grow items-center justify-center w-full text-center'>
-                <div className='w-[80%] text-white mx-auto flex items-center text-center gap-3 flex-wrap'>
+            <div className='flex flex-grow items-center justify-center w-full '>
+                <div className='w-full text-white mx-auto flex items-center  gap-3 flex-wrap '>
                     {heroText.map((el, i) => (
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className='text-3xl lg:text-6xl font-bold'
+                            className='text-3xl lg:text-6xl font-bold text-center'
                             transition={{
                                 duration: 0.7,
                                 delay: i / 10,

@@ -30,7 +30,7 @@ const MyComponent = () => {
                     </p>
                     <div className=' rounded-xl max-w-full lg:max-w-[900px] p-5 flex flex-col gap-5 lg:flex-row l'>
 
-                        <Image src={Section1Image} alt="Section 1" className='rounded-xl  max-w-[600px] ' style={{
+                        <Image src={Section1Image} alt="Section 1" className='rounded-xl  max-w-[1000px] ' style={{
                             width: '100%',
                             height: 'auto'
                         }}/>
