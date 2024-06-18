@@ -4,7 +4,7 @@ import Head from 'next/head';
 import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Sidebar from "@/app/components/shared/SideBar";
-import { AuthProvider } from "@/context/AuthContext";
+import { AuthProvider } from "@/app/context/AuthContext";
 import LoadingSkeleton from "@/app/components/shared/LoadingSkeleton";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"

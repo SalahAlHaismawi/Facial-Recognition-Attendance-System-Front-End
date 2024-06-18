@@ -10,7 +10,7 @@ import notebook from '../../../public/icons/notebook.png';
 import Logout from '../../../public/icons/logout.png';
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { AuthContext } from '@/context/AuthContext';
+import { AuthContext } from '@/app/context/AuthContext';
 import VisionCafe from '@/public/Visioncafe.png';
 const SideBar: React.FC = () => {
   const { logout } = useContext(AuthContext);

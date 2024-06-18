@@ -3,13 +3,16 @@ import WelcomeCard from '@/app/components/shared/WelcomeCard';
 import AttendanceBox from '@/app/components/shared/AttendanceBox';
 
 import SideBar from '@/app/components/shared/SideBar'
-import {AuthProvider} from '../../context/AuthContext'
-import useProtectedRoute from '@/context/useProtectedRoute';
+import {AuthProvider} from '@/app/context/AuthContext'
+import useProtectedRoute from '@/app/context/useProtectedRoute';
+import {AdminProvider} from "@/app/context/AdminContext";
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useProtectedRoute(); 
     return (
-      <AuthProvider>
+        <AdminProvider>
+
+        <AuthProvider>
         <div className="flex h-screen w-screen justify-center pt-10 ">
       <SideBar />
       <div className="flex flex-col flex-grow">
@@ -22,7 +25,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     </div>
       </AuthProvider>
-      
+        </AdminProvider>
+
+
     );
   };
 

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from './AuthContext';
 
 const useProtectedRoute = () => {
   const { isLoggedIn, isLoading } = useContext(AuthContext);

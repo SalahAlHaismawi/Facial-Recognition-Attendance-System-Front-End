@@ -3,8 +3,8 @@ import WelcomeCard from '@/app/components/shared/WelcomeCard';
 import AttendanceBox from '@/app/components/shared/AttendanceBox';
 
 import SideBar from '@/app/components/shared/SideBar'
-import {AuthProvider} from '../../context/AuthContext'
-import useProtectedRoute from '@/context/useProtectedRoute';
+import {AuthProvider} from '@/app/context/AuthContext'
+import useProtectedRoute from '@/app/context/useProtectedRoute';
 import { useLocation } from 'react-router-dom'; // Import useLocation
 import DetectStream from '../components/face-detection/detect-stream';
 import React, {Suspense} from "react";

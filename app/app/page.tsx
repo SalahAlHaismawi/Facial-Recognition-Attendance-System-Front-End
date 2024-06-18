@@ -3,7 +3,7 @@ import Image from "next/image";
 import Github from '../public/icons/GitHub.png';
 import Microsoft from '../public/icons/Microsoft.png';
 import LinkedIn from '../public/icons/LinkedIn.png';
-import { AuthProvider } from '../context/AuthContext';
+import { AuthProvider } from '@/app/context/AuthContext';
 import { OAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebaseConfig";
 import React from "react";

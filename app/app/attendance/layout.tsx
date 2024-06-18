@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig'; // Import db from your firebaseConfig
 import SideBar from '@/app/components/shared/SideBar';
-import { AuthProvider } from '../../context/AuthContext';
-import useProtectedRoute from '@/context/useProtectedRoute';
+import { AuthProvider } from '@/app/context/AuthContext';
+import useProtectedRoute from '@/app/context/useProtectedRoute';
 import DetectStream from '../components/face-detection/detect-stream';
 import { setDoc } from "@firebase/firestore";
 

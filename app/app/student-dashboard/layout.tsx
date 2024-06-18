@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import AttendanceBox from '@/app/components/shared/AttendanceBox';
 import Account from '../../public/icons/Account.png';
-import { AuthContext, AuthProvider } from '../../context/AuthContext';
-import useProtectedRoute from '@/context/useProtectedRoute';
+import { AuthContext, AuthProvider } from '@/app/context/AuthContext';
+import useProtectedRoute from '@/app/context/useProtectedRoute';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import {db, storage,} from '../../firebaseConfig';
 import Profile from "@/app/components/shared/Profile"; // Import storage

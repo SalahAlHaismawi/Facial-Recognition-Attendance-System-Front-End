@@ -1,8 +1,8 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { AuthContext } from '@/context/AuthContext';
-import useProtectedRoute from '@/context/useProtectedRoute';
+import { AuthContext } from '@/app/context/AuthContext';
+import useProtectedRoute from '@/app/context/useProtectedRoute';
 import { ref, listAll, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage';
 import { storage, db } from '@/firebaseConfig'; // Import storage and Firestore
 import { doc, getDoc } from 'firebase/firestore';
