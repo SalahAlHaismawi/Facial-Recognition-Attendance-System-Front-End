@@ -186,52 +186,52 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             console.error('Error deleting attendance:', error);
         }
     };
-    useEffect(() => {
-        const fetchEncodingStatus = () => {
-            fetch('http://localhost:8000/encoding-status')
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Network response was not ok.');
-                })
-                .then(data => {
-                    if (data.encoding === false) { // Assuming the API returns { encoding: false } when done
-                        setEncodingStatus('complete');
-                        clearInterval(intervalId);  // Stop polling
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    setEncodingStatus('error');  // Handle errors
-                });
-        };
-
-        const id = setInterval(fetchEncodingStatus, 5000); // Poll every 5 seconds
-        setIntervalId(id); // Store interval ID for cleanup
-
-        return () => {
-            clearInterval(id); // Clear interval on component unmount
-        };
-    }, []);
-
-    const startEncoding = () => {
-        setEncodingStatus("Encoding in progress..."); // Start encoding when button is clicked
-
-        // After 10 seconds, change status to "Done"
-        setTimeout(() => {
-            setEncodingStatus("Done"); // End encoding
-
-            // Optionally reset to "No encoding in progress" after some time
-            setTimeout(() => {
-                setEncodingStatus("No encoding in progress");
-            }, 5000); // After 5 more seconds, reset the status
-        }, 10000); // 10000 milliseconds = 10 seconds
-        fetch('http://localhost:8000/start-encoding', { method: 'POST' })
-            .then(response => response.json())
-            .then(data => console.log(data.message))
-            .catch(error => console.error('Error starting encoding:', error));
-    };
+    // useEffect(() => {
+    //     const fetchEncodingStatus = () => {
+    //         fetch('http://localhost:8000/encoding-status')
+    //             .then(response => {
+    //                 if (response.ok) {
+    //                     return response.json();
+    //                 }
+    //                 throw new Error('Network response was not ok.');
+    //             })
+    //             .then(data => {
+    //                 if (data.encoding === false) { // Assuming the API returns { encoding: false } when done
+    //                     setEncodingStatus('complete');
+    //                     clearInterval(intervalId);  // Stop polling
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error:', error);
+    //                 setEncodingStatus('error');  // Handle errors
+    //             });
+    //     };
+    //
+    //     const id = setInterval(fetchEncodingStatus, 5000); // Poll every 5 seconds
+    //     setIntervalId(id); // Store interval ID for cleanup
+    //
+    //     return () => {
+    //         clearInterval(id); // Clear interval on component unmount
+    //     };
+    // }, []);
+    //
+    // const startEncoding = () => {
+    //     setEncodingStatus("Encoding in progress..."); // Start encoding when button is clicked
+    //
+    //     // After 10 seconds, change status to "Done"
+    //     setTimeout(() => {
+    //         setEncodingStatus("Done"); // End encoding
+    //
+    //         // Optionally reset to "No encoding in progress" after some time
+    //         setTimeout(() => {
+    //             setEncodingStatus("No encoding in progress");
+    //         }, 5000); // After 5 more seconds, reset the status
+    //     }, 10000); // 10000 milliseconds = 10 seconds
+    //     fetch('http://localhost:8000/start-encoding', { method: 'POST' })
+    //         .then(response => response.json())
+    //         .then(data => console.log(data.message))
+    //         .catch(error => console.error('Error starting encoding:', error));
+    // };
 
 
     return (
@@ -258,10 +258,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                     ))}
                                 </select>
                             </div>
-                            <button onClick={startEncoding}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Start Encoding
-                            </button>
+                            {/*<button onClick={startEncoding}*/}
+                            {/*        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">*/}
+                            {/*    Start Encoding*/}
+                            {/*</button>*/}
                             <div className='text-white mt-4'>Status: {encodingStatus}</div>
 
 

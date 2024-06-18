@@ -75,25 +75,25 @@ const Livestream = ({ link }) => {
     const [progress, setProgress] = useState(0);
     const [status, setStatus] = useState('');
 
-    useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8000/ws/encode');
-
-        ws.onmessage = event => {
-            const data = JSON.parse(event.data);
-            if (data.progress) {
-                setProgress(data.progress);
-                setStatus(data.status);
-            }
-        };
-
-        ws.onopen = () => console.log("Connected to WebSocket");
-        ws.onclose = () => console.log("Disconnected from WebSocket");
-        ws.onerror = error => console.log("WebSocket error:", error);
-
-        return () => {
-            ws.close();
-        };
-    }, []);
+    // useEffect(() => {
+    //     const ws = new WebSocket('ws://localhost:8000/ws/encode');
+    //
+    //     ws.onmessage = event => {
+    //         const data = JSON.parse(event.data);
+    //         if (data.progress) {
+    //             setProgress(data.progress);
+    //             setStatus(data.status);
+    //         }
+    //     };
+    //
+    //     ws.onopen = () => console.log("Connected to WebSocket");
+    //     ws.onclose = () => console.log("Disconnected from WebSocket");
+    //     ws.onerror = error => console.log("WebSocket error:", error);
+    //
+    //     return () => {
+    //         ws.close();
+    //     };
+    // }, []);
 
     // const handleButtonClick = async () => {
     //
