@@ -7,10 +7,10 @@ import { ref, listAll, getDownloadURL, uploadBytes, deleteObject } from 'firebas
 import { storage, db } from '@/firebaseConfig'; // Import storage and Firestore
 import { doc, getDoc } from 'firebase/firestore';
 import ProfilePic from '../../../public/Profile.png';
-
+import Back from '../../../public/icons/back.png'
 const Profile = () => {
     useProtectedRoute();
-    const { user, isLoading } = useContext(AuthContext); // Get user from context
+    const { user, isLoading, logout } = useContext(AuthContext); // Get user from context
     const [captureUrls, setCaptureUrls] = useState<string[]>([]);
     const [userData, setUserData] = useState<any>(null);
     const [uploading, setUploading] = useState(false);
@@ -106,22 +106,34 @@ const Profile = () => {
 
     return (
         <div className="flex justify-center h-screen bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]">
-            <div className="rounded-lg shadow-xl w-full max-w-3xl overflow-y-auto p-5">
-                <div className="flex flex-col items-center text-white rounded p-5 border-4 border-white border-opacity-80 rounded-xl bg-white bg-opacity-10">
+
+            <div className="rounded-lg shadow-xl w-full max-w-screen overflow-y-auto p-5 ">
+                <div className="flex flex-row-reverse p-2 justify-between">
+                    <button onClick={logout} className='text-white bg-red-500 p-2 mb-2 rounded-xl'>
+                        <span>Logout</span>
+                    </button>
+                    <button  className='text-white  p-2 mb-2 rounded-xl'>
+                        <a href="/student-dashboard">
+                            <Image src={Back} alt={'back'} width={25} href=''/>
+
+                        </a>
+                    </button>
+                </div>
+
+                <div
+                    className="flex flex-col items-center text-white rounded p-5 border-4 border-white border-opacity-80 rounded-xl bg-white bg-opacity-10">
                     <div className="flex justify-center">
                         <div className="rounded-xl p-2 bg-blue-500">
-                            <Image src={ProfilePic} alt="Profile" />
+                            <Image src={ProfilePic} alt="Profile"/>
                         </div>
                     </div>
-                    <h1 className="m-1">Student Credentials</h1>
                     {userData && (
-                        <div className="flex flex-col w-full">
-                            <p className="text-md"><strong>Name:</strong> {userData.student_name}</p>
-                            <p className="text-md"><strong>Student ID:</strong> {userData.student_id}</p>
-                            <p className="text-sm"><strong>Email:</strong> {user.email}</p>
+                        <div className="flex flex-col w-full mt-3">
+                            <p className="text-md"><strong className='text-green-300 text-xl'>Name:</strong> {userData.student_name}</p>
+                            <p className="text-md"><strong className='text-green-300 text-xl'>Student ID:</strong> {userData.student_id}</p>
+                            <p className="text-sm"><strong className='text-green-300 text-xl'>Email:</strong> {user.email}</p>
                         </div>
                     )}
-                    <h2 className="text-2xl font-semibold text-white mt-4">Face Recognition Pictures</h2>
                     <div className="mt-4 w-full">
                         <label className="block text-white mb-2">Upload New Picture:</label>
                         <input
@@ -136,7 +148,8 @@ const Profile = () => {
                         {captureUrls.length > 0 ? (
                             captureUrls.map((url, index) => (
                                 <div key={index} className="relative w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
-                                    <div className="p-2 bg-gradient-to-b from-purple-600 to-purple-400 rounded-lg shadow-lg">
+                                    <div
+                                        className="p-2 bg-gradient-to-b from-purple-600 to-purple-400 rounded-lg shadow-lg">
                                         <Image
                                             src={url}
                                             alt={`Capture ${index + 1}`}
@@ -154,7 +167,7 @@ const Profile = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="text-white">No captures available</p>
+                            <p className="text-white text-sm">No Face Recognition Personal Pictures Available.</p>
                         )}
                     </div>
                 </div>

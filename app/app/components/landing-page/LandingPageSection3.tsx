@@ -5,8 +5,8 @@ import Section2Image from '../../../public/manageStudents.png';
 
 const MyComponent = () => {
     return (
-        <div className='min-h-screen min-w-screen flex flex-row justify-between pt-10  bg-gradient-to-b from-[#040D12] to-[#700B97] '>
-            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen lg:p-20 '>
+        <div className='min-h-screen min-w-screen flex flex-row justify-between   '>
+            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen lg:p-20 max-h-screen bg-gradient-to-t from-purple-900 to-black  '>
 
                 <div className='flex flex-col p-5'>
                     <div

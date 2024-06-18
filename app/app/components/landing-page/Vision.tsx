@@ -31,7 +31,7 @@ const MyComponent = () => {
     return (
         <div className='flex flex-col p-5 bg-gradient-to-b from-[#040D12] to-[#700B97] min-h-screen'>
             <div className='w-full p-10 rounded-2xl'>
-                <h1 className='text-5xl text-white mb-10'>
+                <h1 className='text-4xl text-white mb-10'>
                     The Ultimate Vision:
                 </h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>

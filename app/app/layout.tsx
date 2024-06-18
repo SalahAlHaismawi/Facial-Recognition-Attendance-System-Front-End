@@ -8,6 +8,7 @@ import { AuthProvider } from "@/app/context/AuthContext";
 import LoadingSkeleton from "@/app/components/shared/LoadingSkeleton";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
+import {ParallaxProvider} from "react-scroll-parallax";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,8 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
       <AuthProvider>
-        <html lang="en">
+
+          <html lang="en">
         <Head>
           <title>Vision Cafe</title>
           <meta name="description" content="Smart computer vision applications for your business" />
@@ -41,6 +44,8 @@ export default function RootLayout({
         <Analytics/>
         </body>
         </html>
+
+
       </AuthProvider>
   );
 }
