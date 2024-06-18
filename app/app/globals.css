@@ -19,7 +19,7 @@ body {
     background-image: url('../public/bgImage6.jpg');
     background-size: cover;  /* Cover the entire page */
     background-position: center;  /* Center the background image */
-    background-repeat: no-repeat;  /* Do not repeat the image */
+    background-repeat: repeat-y;  /* Do not repeat the image */
     scroll-padding-top: 1px; /* Ensure snapping happens close to the top */
 }
 
