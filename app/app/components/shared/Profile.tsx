@@ -6,7 +6,8 @@ import useProtectedRoute from '@/context/useProtectedRoute';
 import { ref, listAll, getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage';
 import { storage, db } from '@/firebaseConfig'; // Import storage and Firestore
 import { doc, getDoc } from 'firebase/firestore';
-import ProfilePic from '../../../public/Profile.png'
+import ProfilePic from '../../../public/Profile.png';
+
 const Profile = () => {
     useProtectedRoute();
     const { user, isLoading } = useContext(AuthContext); // Get user from context
@@ -104,20 +105,17 @@ const Profile = () => {
     }
 
     return (
-        <div className="flex justify-center  h-screen bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]   ">
-            <div className=" rounded-lg shadow-xl  w-full max-w-3xl ">
-
-                <div className="flex flex-col items-center text-white  rounded p-5 border-4 border-white border-opacity-80	 rounded-xl m-5   ">
-                    <div className='flex justify-center'>
+        <div className="flex justify-center h-screen bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]">
+            <div className="rounded-lg shadow-xl w-full max-w-3xl overflow-y-auto p-5">
+                <div className="flex flex-col items-center text-white rounded p-5 border-4 border-white border-opacity-80 rounded-xl bg-white bg-opacity-10">
+                    <div className="flex justify-center">
                         <div className="rounded-xl p-2 bg-blue-500">
-                            <Image src={ProfilePic} alt="Profile"/>
-
+                            <Image src={ProfilePic} alt="Profile" />
                         </div>
                     </div>
-                    <h1 className='m-1'>Student Credentials</h1>
+                    <h1 className="m-1">Student Credentials</h1>
                     {userData && (
-
-                        <div className="flex  flex-col   w-full ">
+                        <div className="flex flex-col w-full">
                             <p className="text-md"><strong>Name:</strong> {userData.student_name}</p>
                             <p className="text-md"><strong>Student ID:</strong> {userData.student_id}</p>
                             <p className="text-sm"><strong>Email:</strong> {user.email}</p>
@@ -138,8 +136,7 @@ const Profile = () => {
                         {captureUrls.length > 0 ? (
                             captureUrls.map((url, index) => (
                                 <div key={index} className="relative w-full sm:w-1/3 md:w-1/4 lg:w-1/5">
-                                    <div
-                                        className="p-2 bg-gradient-to-b from-purple-600 to-purple-400 rounded-lg shadow-lg">
+                                    <div className="p-2 bg-gradient-to-b from-purple-600 to-purple-400 rounded-lg shadow-lg">
                                         <Image
                                             src={url}
                                             alt={`Capture ${index + 1}`}
@@ -157,7 +154,7 @@ const Profile = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className='text-white'>No captures available</p>
+                            <p className="text-white">No captures available</p>
                         )}
                     </div>
                 </div>
