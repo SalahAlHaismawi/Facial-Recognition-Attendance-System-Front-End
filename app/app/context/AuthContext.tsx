@@ -10,6 +10,8 @@ type AuthContextType = {
     isLoggedIn: boolean;
     logout: () => Promise<void>;
     isLoading: boolean;
+  displayName: string | null;
+  setDisplayName: (name: string) => void;
   };
   
   export const AuthContext = createContext<AuthContextType>({
@@ -17,20 +19,27 @@ type AuthContextType = {
     isLoggedIn: false,
     logout: async () => {},
     isLoading: true,
+    displayName: null,
+    setDisplayName: () => {}
   });
   export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setLoading] = useState(true); // Manage loading state
+    const [displayName, setDisplayName] = useState<string | null>(null);
+
     const router = useRouter();
   
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
+        if (currentUser) {
+          setDisplayName(currentUser.displayName || null);
+        }
         setLoading(false); // Set loading to false once the user is fetched
       });
       return () => unsubscribe(); // Cleanup on unmount
     }, []);
-  
+
     const logout = async () => {
       try {
         await signOut(auth);
@@ -46,6 +55,8 @@ type AuthContextType = {
       isLoggedIn: !!user,
       logout,
       isLoading,
+      displayName: displayName || null,
+      setDisplayName: setDisplayName,
     };
   
     return (
@@ -54,3 +65,7 @@ type AuthContextType = {
       </AuthContext.Provider>
     );
   };
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import AttendanceBox from '@/app/components/shared/AttendanceBox';
 import Account from '../../public/icons/Account.png';
-import { AuthContext, AuthProvider } from '@/app/context/AuthContext';
+import {AuthContext, AuthProvider, useAuth} from '@/app/context/AuthContext';
 import useProtectedRoute from '@/app/context/useProtectedRoute';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import {db, storage,} from '../../firebaseConfig';
@@ -18,6 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const [captureUrls, setCaptureUrls] = useState<string[]>([]);
     const [isExpanded, setIsExpanded] = useState(false); // State to manage expanded view
     const [subjectsAttendance, setSubjectsAttendance] = useState([]);
+    const { displayName } = useAuth();
 
     const [studentName, setStudentName] = useState('');
     const fetchStudentName = async (studentId: string): Promise<string> => {
@@ -128,7 +129,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </Link>
                     <div className='bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-sm w-full rounded-xl p-2'>
                         <h1>
-                            {isLoading ? 'Loading...' : user ? `Welcome Back, ${studentName}!` : 'Welcome Back, Guest!'}                        </h1> {/* Display username */}
+                            {isLoading ? 'Loading...' : user ? `Welcome Back, ${displayName}!` : 'Welcome Back, Guest!'}                        </h1> {/* Display username */}
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow">

@@ -53,7 +53,7 @@ const Home = () => {
                 <Parallax className="flex justify-center items-center w-screen h-screen snap-center" y={[-20, 20]}>
                     <Demo />
                 </Parallax>
-                <Parallax className="snap-center flex justify-center items-center w-screen flex flex-col pt-10" y={[-20, 20]}>
+                <Parallax className="snap-center flex justify-center items-center w-screen flex flex-col " y={[-20, 20]}>
                     <Contact />
                 </Parallax>
                 <div className="w-screen p-5 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white flex flex-row justify-between">
