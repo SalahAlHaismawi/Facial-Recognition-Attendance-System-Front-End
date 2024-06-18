@@ -1,141 +1,139 @@
 "use client";
-import React, { useState} from "react";
-import { useEffect } from "react";
-
-import { Poppins } from "next/font/google";
-import drawing from "../../public/drawing.png";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import drawing from "../../public/drawing.png";
 import { auth } from "../../firebaseConfig";
-
+import { useRouter } from "next/navigation";
 import {
-  browserLocalPersistence,
-  browserSessionPersistence,
-  getAuth, OAuthProvider,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
-  signInWithEmailAndPassword,
-  signInWithPopup
+  browserLocalPersistence,
+  browserSessionPersistence
 } from "firebase/auth";
+import VisionCafe from '../../public/Visioncafe.png'
 
-import { useRouter } from "next/navigation";
-
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
-  const router = useRouter()
-  const [rememberMe, setRememberMe] = useState(false); // Initially unchecked
-
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                    router.push('/student-dashboard');
-            }
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user && user.emailVerified) {
+        router.push('/student-dashboard');
+      } else if (user) {
+        alert('Please verify your email address.');
+      }
     });
 
-    return () => {
-        unsubscribe();
-    };
-}, []);
-  const handleRememberMeChange = (event:any) => {
-    setRememberMe(event.target.checked);
-  };
+    return () => unsubscribe();
+  }, [router]);
 
   const handleSignInWithEmail = async (event) => {
     event.preventDefault();
-    const auth = getAuth();
+    setLoading(true);
 
-    if (rememberMe) {
-        await setPersistence(auth, browserLocalPersistence);
-    } else {
-        await setPersistence(auth, browserSessionPersistence);
+    if (!email.endsWith('@student.mmu.edu.my')) {
+      alert('Please use a valid MMU student email address.');
+      setLoading(false);
+      return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        router.push('/student-dashboard'); // Use Next.js router to navigate
-      })
-      .catch((error) => {
-        alert(`Failed to log in: ${error.message}`);
-      });
-};
+    try {
+      const authPersistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
+      await setPersistence(auth, authPersistence);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      if (!userCredential.user.emailVerified) {
+        alert('Please verify your email address. Check your inbox for the verification email.');
+      }
+    } catch (error) {
+      alert(`Login failed: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const handleRegister = async () => {
+    if (!email.endsWith('@student.mmu.edu.my')) {
+      alert('Please use a valid MMU student email address.');
+      return;
+    }
 
+    try {
+      setLoading(true);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(userCredential.user);
+      alert('Please check your email for verification link.');
+    } catch (error) {
+      alert(`Registration failed: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="w-screen h-screen flex">
-      <div className="flex flex-row w-1/2 h-screen items-center justify-center bg-[#161A30] ">
-        <div className="w-[50%] ">
-          <h1 className="text-[48px] text-white">Login</h1>
-          <form className="mt-8">
+      <div className="w-screen h-screen bg-gradient-to-b from-[#6707FF] to-[#b01dddcc]">
+        <div className=" w-full justify-center">
+          <div className="flex flex-col items-center p-10 ">
             <div>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="mt-2 px-4 py-2 w-full   text-white bg-Lblack border-b"
-                placeholder="Enter Your MMU Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <Image src={VisionCafe} alt={'Logo'}/>
+
             </div>
-            <div>
+            <form className="mt-8 " onSubmit={handleSignInWithEmail}>
               <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-2 px-4 py-2 w-full   text-white bg-Lblack border-b"
+                  id="email"
+                  type="email"
+                  required
+                  placeholder="Enter Your MMU Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-2 px-4 py-2 w-full text-white bg-Lblack border-b"
               />
-            </div>
-            <div className="mt-6">
-              {/*add a remember me check box*/}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
+              <input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-2 px-4 py-2 w-full text-white bg-Lblack border-b"
+              />
+              <div className="mt-6 flex items-center justify-between">
+                <label className="flex items-center text-sm text-white">
                   <input
-                    id="remember_me"
-                    name="remember_me"
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={handleRememberMeChange}
-                    className="h-4 w-4 text-Lpurple focus:ring-Lpurple border-gray-300 rounded"
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="h-4 w-4 text-Lpurple focus:ring-Lpurple border-gray-300 rounded"
                   />
-                  <label
-                    htmlFor="remember_me"
-                    className="ml-2 block text-sm text-white"
-                  >
-                    Remember me
-                  </label>
-                </div>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-medium text-Lpurple hover:text-LpurpleDark"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
+                  Remember me
+                </label>
+                <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    disabled={loading}
+                >
+                  Sign In
+                </button>
+                <button
+                    type="button"
+                    onClick={handleRegister}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    disabled={loading}
+                >
+                  Register
+                </button>
               </div>
-
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-      <div className="w-1/2 h-screen flex flex-col items-center justify-center  bg-gradient-to-b from-[#925FE2] to-[#b01dddcc] relative">
-        <h1 className="text-[80px] pb-[600px] text-white ">
-        </h1>
 
-        <Image
-          src={drawing}
-          alt="Image"
-          className="absolute opacity-0.5  pt-[100px]"
-        />
       </div>
-    </div>
   );
 };
+
 export default LoginPage;

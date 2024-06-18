@@ -6,10 +6,11 @@ import Account from '../../public/icons/Account.png';
 import { AuthContext, AuthProvider } from '../../context/AuthContext';
 import useProtectedRoute from '@/context/useProtectedRoute';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../firebaseConfig';
+import {db, storage,} from '../../firebaseConfig';
 import Profile from "@/app/components/shared/Profile"; // Import storage
 import Link from 'next/link';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import {doc, getDoc} from "@firebase/firestore";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     useProtectedRoute();
@@ -18,13 +19,29 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const [isExpanded, setIsExpanded] = useState(false); // State to manage expanded view
     const [subjectsAttendance, setSubjectsAttendance] = useState([]);
 
+    const [studentName, setStudentName] = useState('');
+    const fetchStudentName = async (studentId: string): Promise<string> => {
+        const studentDocRef = doc(db, 'Students', studentId);
+        const studentDoc = await getDoc(studentDocRef);
+        if (studentDoc.exists()) {
+            const studentData = studentDoc.data();
+            console.log(studentData);
+            return studentData.student_name || 'Unnamed';
+        } else {
+            console.log('No such document!');
+            return 'Unnamed';
+        }
+    };
+
     useEffect(() => {
         const fetchCaptures = async () => {
             if (user) {
                 // Extract student ID from email (assuming email format is studentId@domain.com)
                 const email = user.email;
                 const studentId = email.split('@')[0];
-                const studentName = user.displayName || 'Unnamed';
+                const studentName = await fetchStudentName(studentId);
+                setStudentName(studentName);
+                console.log('student_name',studentName)
                 console.log('studentId:', studentId); // Debug log for actual student ID
 
                 const folderRef = ref(storage, `${studentName}`); // Path to the folder
@@ -111,8 +128,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </Link>
                     <div className='bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-sm w-full rounded-xl p-2'>
                         <h1>
-                            {isLoading ? 'Loading...' : user ? `Welcome Back, ${user.displayName || 'User'}!` : 'Welcome Back, Guest!'}
-                        </h1> {/* Display username */}
+                            {isLoading ? 'Loading...' : user ? `Welcome Back, ${studentName}!` : 'Welcome Back, Guest!'}                        </h1> {/* Display username */}
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow">
@@ -143,7 +159,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         )}
                     </div>
 
-                </div>
+                </div>                      
+
                 <div className="flex-grow">
                     {children}
                 </div>
