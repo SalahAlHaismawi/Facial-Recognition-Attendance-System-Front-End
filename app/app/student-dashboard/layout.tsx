@@ -120,7 +120,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <AuthProvider>
 
             <div className="flex flex-col h-screen overflow-y-scroll">
-                <div className='flex flex-row-reverse gap-5 justify-between'>
+                <div className='flex flex-row-reverse gap-5 justify-between p-5'>
                     <Link href="/profile">
                         <div className='flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] p-4 w-[65px] h-[65px] cursor-pointer'>
                             <Image src={Account} alt={'Account'} className='w-10 h-10 object-cover rounded-full'/>
@@ -159,7 +159,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         )}
                     </div>
 
-                </div>                      
+                </div>
 
                 <div className="flex-grow">
                     {children}

@@ -6,9 +6,9 @@ import Section2Image from '../../../public/manageStudents.png';
 const MyComponent = () => {
     return (
         <div className='min-h-screen min-w-screen flex flex-row justify-between pt-10  bg-gradient-to-b from-[#040D12] to-[#700B97] '>
-            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen lg:p-20 '>
+            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen '>
 
-                <div className='flex flex-col p-5'>
+                <div className='flex flex-col '>
                     <div
                         className='rounded-full w-[30px] h-[30px] bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-center ml-5'>
                         <span>1</span>
