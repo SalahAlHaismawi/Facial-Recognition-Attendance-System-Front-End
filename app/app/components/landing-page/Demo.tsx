@@ -25,7 +25,7 @@ const MyComponent = () => {
                     <h2 className='text-3xl text-white mb-4'>Seamless Integration:</h2>
                     <p className='text-white text-xs lg:text-2xl text-justify'>
                         Vision Cafe is designed to integrate seamlessly into your existing infrastructure,
-                        offering hassle-free compatibility with all types of CCTV cameras. Whether you're upgrading
+                        offering hassle-free compatibility with all types of CCTV cameras. Whether you are upgrading
                         an old system or installing a new one, Vision Cafe provides a robust solution that enhances
                         security and functionality without requiring significant changes to your current setup.
                     </p>

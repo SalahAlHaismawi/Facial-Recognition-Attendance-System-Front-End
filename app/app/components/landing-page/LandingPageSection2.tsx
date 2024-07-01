@@ -17,7 +17,7 @@ const MyComponent = () => {
                                 <span className="block">LIKE YOLO, AND MTCNN</span>
                             </h1>
                             <p className='text-white mt-4'>
-                                In today's fast-paced technological environment, staying at the forefront demands tools that advance as rapidly as they innovate. YOLO (You Only Look Once), renowned for its exceptional speed and accuracy in object detection, is indispensable for scenarios requiring instant and reliable analysis. Similarly, MTCNN (Multi-task Cascaded Convolutional Networks) excels in facial detection and alignment, providing precise and robust recognition capabilities. These advanced machine learning models are pivotal in the realm of artificial intelligence, offering unmatched efficiency and accuracy essential for modern applications.                            </p>
+                                In this  fast-paced technological age, staying at the forefront demands tools that advance as rapidly as they innovate. YOLO (You Only Look Once), renowned for its exceptional speed and accuracy in object detection, is indispensable for scenarios requiring instant and reliable analysis. Similarly, MTCNN (Multi-task Cascaded Convolutional Networks) excels in facial detection and alignment, providing precise and robust recognition capabilities. These advanced machine learning models are pivotal in the realm of artificial intelligence, offering unmatched efficiency and accuracy essential for modern applications.                            </p>
                         </div>
                         <div className='mt-5 md:mt-0 md:ml-5 flex-1'>
                             <Image

@@ -206,7 +206,7 @@ const LoginPage = () => {
                     onClick={() => setIsRegister(true)}
                     className="text-green-500 hover:text-green-700"
                 >
-                  Don't have an account? Register
+                  Dont have an account? Register
                 </button>
               </form>
           )}
