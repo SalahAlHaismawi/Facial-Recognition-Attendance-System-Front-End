@@ -17,9 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <SideBar />
       <div className="flex flex-col flex-grow">
         <WelcomeCard />
-        <div className='mt-10 flex flex-col '>
-        <AttendanceBox />
-        </div>
+
         
         <main className="overflow-auto">{children}</main>
       </div>

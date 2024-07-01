@@ -38,20 +38,20 @@ const Home = () => {
                 <Parallax className="h-screen flex justify-center items-center w-screen snap-start" y={[-20, 20]}>
                     <Hero />
                 </Parallax>
-                <Parallax className="flex justify-center items-center h-screen w-screen snap-center" y={[-20, 20]}>
+                <Parallax className="flex justify-center items-center w-screen snap-center" y={[-20, 20]}>
                     <LandingPageSection1 />
                 </Parallax>
-                <Parallax className="flex justify-center items-center h-screen w-screen snap-center" y={[-20, 20]}>
+                <Parallax className="flex justify-center items-center  w-screen snap-center" y={[-20, 20]}>
                     <LandingPageSection2 />
                 </Parallax>
-                <Parallax className="flex justify-center items-center h-screen w-screen snap-center" y={[-20, 20]}>
+                <Parallax className="flex justify-center items-center  w-screen snap-center" y={[-20, 20]}>
                     <LandingPageSection3 />
                 </Parallax>
-                <Parallax className="flex justify-center items-center w-screen " y={[-20, 20]}>
-                    <Vision />
-                </Parallax>
-                <Parallax className="flex justify-center items-center w-screen h-screen snap-center" y={[-20, 20]}>
+                <Parallax className="flex justify-center items-center max-w-screen snap-center" y={[-20, 20]}>
                     <Demo />
+                </Parallax>
+                <Parallax className="flex justify-center items-center w-screen snap-none ">
+                    <Vision />
                 </Parallax>
                 <Parallax className="snap-center flex justify-center items-center w-screen flex flex-col " y={[-20, 20]}>
                     <Contact />

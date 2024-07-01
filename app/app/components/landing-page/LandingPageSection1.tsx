@@ -1,48 +1,38 @@
 import React from 'react';
 import Image from "next/image";
 import Section1Image from '../../../public/faceDetection.png';
-import Section2Image from '../../../public/manageStudents.png';
 
 const MyComponent = () => {
     return (
-        <div className='min-h-screen min-w-screen flex flex-row justify-between   '>
-            <div className='lg:flex lg:flex-row flex flex-col items-center lg:justify-between w-screen bg-gradient-to-t from-purple-900 to-black '>
-
-                <div className='flex flex-col p-5 '>
-                    <div
-                        className='rounded-full w-[30px] h-[30px] bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-center ml-5'>
-                        <span>1</span>
-                    </div>
-
-                    <h1 className='text-2xl p-5 lg:text-5xl font-bold text-white w-full flex flex-col pt-5'>
-                        <span
-                            className="truncate overflow-hidden whitespace-nowrap text">UPGRADE YOUR EXISTING CCTV,</span>
-                        <span
-                            className="truncate overflow-hidden whitespace-nowrap">WITH REAL-TIME</span>
-                        <span
-                            className="truncate overflow-hidden whitespace-nowrap">AND RECOGNITION</span>
-
-                    </h1>
-                    <p className='text-white text-md pl-5 pr-5'>
-                        Elevate your security measures to the next level with our state-of-the-art face detection and recognition technology. Designed to seamlessly integrate with your existing CCTV infrastructure, our solution empowers you with real-time capabilities to enhance monitoring and ensure unparalleled safety.
-
-                    </p>
-                    <div className=' rounded-xl max-w-full lg:max-w-[900px] p-5 flex flex-col gap-5 lg:flex-row l'>
-
-                        <Image src={Section1Image} alt="Section 1" className='rounded-xl  max-w-[1000px] ' style={{
-                            width: '100%',
-                            height: 'auto'
-                        }}/>
-                        <div>
-
+        <div className='min-h-screen w-full flex items-center justify-center bg-gradient-to-t from-purple-900 to-black'>
+            <div className='p-5 max-w-5xl w-full'>
+                <div className='bg-purple-800 p-5 rounded-lg shadow-lg'>
+                    <div className='flex flex-col md:flex-row items-center'>
+                        <div className='flex-1'>
+                            <div className='rounded-full w-8 h-8 bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] text-white text-center mb-5'>
+                                <span>1</span>
+                            </div>
+                            <h1 className='text-2xl md:text-4xl font-bold text-white'>
+                                Upgrade Your Existing CCTV Camera,
+                                <span className="block">with Face Detection and Recognition</span>
+                            </h1>
+                            <p className='text-white mt-4'>
+                                In an era where technology rapidly evolves, staying ahead requires tools that not only keep pace but also set the pace. Our state-of-the-art machine learning models represent the pinnacle of innovation in artificial intelligence, providing unparalleled accuracy and efficiency.
+                            </p>
                         </div>
+                        <div className='mt-5 md:mt-0 md:ml-5 flex-1'>
+                            <Image
+                                src={Section1Image}
+                                alt="Face Detection"
 
-
+                                width={1000}  // Adjusted width
+                                height={600}  // Adjusted height for better aspect ratio
+                                className='rounded-xl'
+                            />
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 };

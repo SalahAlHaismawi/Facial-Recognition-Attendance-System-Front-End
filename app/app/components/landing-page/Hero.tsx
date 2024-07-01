@@ -83,10 +83,10 @@ const MyComponent = () => {
 
                 <button
                     type='submit'
-                    className='w-[120px] h-[50px] flex flex-row justify-between items-center p-2 border border-transparent rounded-xl shadow-lg text-md font-medium text-white bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] my-auto'
+                    className='w-[80px] h-[50px] flex flex-row justify-between items-center p-2 border border-transparent rounded-xl shadow-lg text-md font-medium text-white bg-gradient-to-b from-[#F38E3C] to-[#EB573F] my-auto'
                 >
                     <a href='/login' className='text-md'>Sign In</a>
-                    <Image src={Microsoft} alt={'login-microsoft'} />
+
                 </button>
             </div>
 
@@ -96,7 +96,7 @@ const MyComponent = () => {
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className='text-3xl lg:text-6xl font-bold text-center'
+                            className='text-3xl lg:text-6xl font-bold text'
                             transition={{
                                 duration: 0.7,
                                 delay: i / 10,
