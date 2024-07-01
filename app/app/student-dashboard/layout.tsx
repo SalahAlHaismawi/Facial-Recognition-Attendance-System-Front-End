@@ -120,7 +120,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <AuthProvider>
 
-            <div className="flex flex-col h-screen overflow-y-scroll">
+            <div className="flex flex-col h-screen overflow-y-scroll pt-10">
                 <div className='flex flex-row-reverse gap-5 justify-between p-5'>
                     <Link href="/profile">
                         <div className='flex flex-col items-center justify-center rounded-full bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] p-4 w-[65px] h-[65px] cursor-pointer'>
