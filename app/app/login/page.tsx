@@ -102,7 +102,7 @@ const LoginPage = () => {
   };
 
   return (
-      <div className="w-screen h-screen  bg-gradient-to-b from-[#F38E3C] to-[#EB573F]  flex items-center justify-center">
+      <div className="w-screen h-screen  bg-gradient-to-b from-[#0E0E0E] to-[#1F1F1F]  flex items-center justify-center">
         <div className="bg-gradient-to-b from-[#6707FF] to-[#b01dddcc] shadow-md rounded-lg p-8 max-w-md w-full">
           <div className="flex justify-center mb-8">
             <Image src={VisionCafe} alt="Logo" width={150} height={150} />
